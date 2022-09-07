@@ -3,16 +3,27 @@ de caracteres que tiene. Después impórtalo en tu “entry point” y utilízal
 devolver la longitud de “En un lugar de la mancha de cuyo nombre no quiero
 acordarme”*/
 
-let string = 'Nuestras vidas se definen por las oportunidades, incluso las que perdemos'
 
-function stringCount(string) {
-   console.log(string.length)
+//Importar función desde obj-03.js
+let functionStringCount = require ("./obj-03.js")
+
+//Definir string
+let string = 'En un lugar de la mancha de cuyo nombre no quiero acordarme'
+
+//Implementar función con la variable deseada
+console.log(functionStringCount(string))
+
+
+
+
+/*Lo visto en clase:
+
+function stringCountcuentaCaracteres(frase){
+   return frase.length
 }
 
-module.exports = stringCount
-console.log(module)
+module.exports = cuentaCaracteres
+let comosea = require("./string")
 
-let functionStringCount = require ("./stringCount")
-string = 'En un lugar de la mancha de cuyo nombre no quiero acordarme'
-console.log(functionStringCount(string))
-CD
+comosea("En un lugar de la mancha de cuyo nombre no quiero acordarme")
+*/
