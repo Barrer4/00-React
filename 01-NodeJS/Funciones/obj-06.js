@@ -1,9 +1,10 @@
-//función que devuelve el factorial de un número que le llega por argumento. 
+let n = require (pushNumber())
 
 function factorial(n) {
-   let number = 1
-   for (let i = 0; i < i<= n; i++) {
-      number = number * i
+   for (let i = 1; i <= n; i++) {
+      n = n * i 
    }
-   return number
+   return n
 }
+
+module.exports = factorial()
