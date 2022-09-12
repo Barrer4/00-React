@@ -21,7 +21,7 @@ countries = countries.concat(data.paises.c)
 
 
 for (let i = 0; i < data.favoritos.length; i++) {
-   let fav = data.favoritos[i] - 1
+   let fav = data.favoritos[i]
   
    let favCountries = ''
    favCountries += countries[fav]
