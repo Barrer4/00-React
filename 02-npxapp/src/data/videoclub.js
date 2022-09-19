@@ -114,4 +114,4 @@ let videoclub = {
 };
 
 
-
+export default videoclub.peliculas

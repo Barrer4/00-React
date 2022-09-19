@@ -1,6 +1,6 @@
 
 import './App.css';
-import videoclub from './data/videoclub.js';
+import movielist from './data/videoclub.js';
 
 //Importando componentes
 import Header from './Header';
@@ -13,7 +13,7 @@ function App() {
   return (
     <>
       <Header className='header'/>
-      <Main peliculas={videoclub}/>
+      <Main films={movielist}/>
       <Footer />
     </>
   );
