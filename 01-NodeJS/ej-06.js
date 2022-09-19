@@ -5,9 +5,9 @@ supervillano correspondiente del paquete npm “supervillains”. Llama a la fun
 cuatro veces con un número aleatorio entre 1 y 20 */
 
 
-//Generando un número aleatorio entre 1 y 20
+//Generando un número aleatorio entre 1 y 5 (lo cambié después de ver la corrección)
 function pushNumber() {
-   let randomNumber = parseInt(Math.random() * (20 - 1) + 1);
+   let randomNumber = parseInt(Math.random() * (5 - 1) + 1);
    return randomNumber;
 }
 
@@ -24,14 +24,9 @@ let pullFactorial = require("./funciones/factorial");
 let supervillains = require('supervillains');
 
 
-//Mostrar al supervillano correspondiente al número factorial
-let number = pullFactorial(pushNumber());
-console.log(`Supervillain with factorial #`);
-console.log(supervillains.random(number));
-
-
-//Mostrar al supervillano 4 veces con un número aleatorio entre 1 y 20
+//Mostrar al supervillano 4 veces con el factorial del número aleatorio entre 1 y 5
 for (let i = 1; i <= 4; i++) {
    console.log(`Supervillain #${i}`);
-   console.log(supervillains.random(pushNumber()));
+   console.log(supervillains.all[pullFactorial(pushNumber())]); //<- había hecho una variable number=pullFactorial(pushNumber()) pero el for siempre se ejecutaba con el mismo supervillano.
 }
+
