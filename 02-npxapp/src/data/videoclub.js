@@ -115,17 +115,3 @@ let videoclub = {
 
 
 
-function MovieList(props) {
-   const peliculas = props.videoclub.peliculas;
-   const listedFilms = peliculas.map((pelicula) =>
-      <div key={pelicula.titulo} class="card">
-         <img src={pelicula.cartel} alt={pelicula.titulo} />
-         <h3>{pelicula.titulo}"</h3>
-         <p>{pelicula.sinopsis}</p>
-      </div>
-   );
-   return (
-      <ul>{listedFilms}</ul>);
-}
-
-export default MovieList;
