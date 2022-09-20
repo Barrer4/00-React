@@ -23,5 +23,6 @@ yarn-debug.log*
 yarn-error.log*
 
 /public/*"
-/package-lock.json
-/package.json
+package-lock.json
+package.json
+/src/reportWebVitals.js
