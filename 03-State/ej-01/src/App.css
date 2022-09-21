@@ -1,0 +1,17 @@
+body,
+html {
+ 
+  display: block;
+  text-align: center;
+}
+
+.card {
+  margin: auto;
+  margin-top: 80px;
+  border: 1px solid gray;
+  display: block;
+  min-width: fit-content;
+  width: 250px;
+  padding: 20px;
+ 
+}
