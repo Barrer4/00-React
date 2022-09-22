@@ -1,6 +1,3 @@
-/*Crea una SPA en la que muestres la información de nuestro usuario. Almacena el
-objeto en un archivo de servicio:*/
-
 let persona = {
     nombre: "Paco",
     edad: 36,

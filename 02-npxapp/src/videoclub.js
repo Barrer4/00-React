@@ -112,22 +112,3 @@ let videoclub = {
         }
     ]
 };
-
-function Pelicula() {
-    let content = ""
-    for (let i = 0; i < videoclub.peliculas.length; i++) {
-        content += Generar(videoclub.peliculas[i], i)
-    }
-
-    function Generar(pelicula, indice) {
-        return
-        <div id={indice} class="card">
-            <img src={pelicula.cartel} alt={pelicula.titulo} />
-            <h3>{pelicula.titulo}</h3>
-            <p>{pelicula.sinopsis}</p>
-        </div>
-
-
-    }
-}
-export default Pelicula;

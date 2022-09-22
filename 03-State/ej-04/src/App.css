@@ -1,38 +1,69 @@
-.App {
-  text-align: center;
+html,
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    max-height: fit-content;
+    min-width: 100%;
+    display: table;
+    margin: 0%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Add some padding inside the card container */
+.catalogue {
+    padding: 2px 16px;
+    margin: auto;
+    margin-bottom: 20px;
+    max-height: fit-content;
+    text-align: center;
+    justify-content: center;
+    padding: 10px 20px;
+    display: flex;
+    flex-flow: row wrap;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Add shadows to create the "card" effect */
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    width: 300px;
+    margin: 10px;
+    padding: 30px;
+    background-color: white;
+    text-align: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
-.App-link {
-  color: #61dafb;
+/* Add some padding inside the card container */
+.container {
+    padding: 2px 16px;
+    margin: auto;
+    max-height: fit-content;
+    text-align: center;
+    padding: 10px 20px;
+    display: flex;
+    flex-flow: row wrap;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+img {
+    max-width: 50%;
+    min-width: 20%;
+    max-height: 50%;
+    margin-top: 15px;
+}
+
+button {
+  margin: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  justify-content: space-around;
+}
+
+
+h1 {
+  font-size: 100px;
+  
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }

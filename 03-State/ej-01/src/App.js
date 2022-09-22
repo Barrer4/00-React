@@ -1,7 +1,9 @@
+/*Crea una SPA en la que muestres la información de nuestro usuario. Almacena el
+objeto en un archivo de servicio:*/
+
 
 import './App.css';
 import persona from './person';
-
 
 
 function App() {
