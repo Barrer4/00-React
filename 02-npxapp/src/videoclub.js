@@ -112,3 +112,5 @@ let videoclub = {
         }
     ]
 };
+
+export default videoclub;

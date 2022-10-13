@@ -1,0 +1,27 @@
+header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 1%;
+    background-color: burlywood;
+}
+
+h1 {
+    font-size: 80px;
+    color: #fcfaf7;
+}
+
+h2 {
+    font-size: x-large;
+    text-align: center;
+}
+
+.user {
+    display: block;
+    text-align: center;
+}
+
+.user img {
+    border-radius: 50%;
+    max-block-size: 100px;
+}

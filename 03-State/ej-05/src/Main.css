@@ -1,0 +1,66 @@
+html,
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    max-height: fit-content;
+    min-width: 100%;
+    display: table;
+    margin: 0%;
+    background-color: #fcfaf7;
+    color: #5c5854;
+}
+
+/* Add some padding inside the card container */
+.catalogue {
+    padding: 2px 16px;
+    margin: auto;
+    margin-bottom: 20px;
+    max-height: max-content;
+    text-align: center;
+    justify-content: center;
+    padding: 10px 20px;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+/* Add shadows to create the "card" effect */
+.card {
+    position: relative;
+    box-shadow: 0 4px 8px 0 rgb(184, 177, 168, 0.6);
+    transition: 0.3s;
+    width: 300px;
+    margin: 15px;
+    padding: 30px;
+    min-height: 600px;
+    background-color: #fbf6f0;
+    contain: content;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(184, 177, 168, 0.8);
+    background-color: #f6ede0;
+    color: #2e2c2a;
+}
+
+
+img {
+    block-size: 150px;
+    width: fit-content;
+    margin-top: 15px;
+}
+
+#id{
+    position: absolute;
+    margin-top: 0.1rem;
+    margin-left: 260px;
+    font-size: x-small;
+}
+
+.stock {
+    text-align: center;
+	bottom: 15px;
+	display: block;
+	justify-self: auto;
+	position: absolute;
+	transform: translateY(-20%) translateX(150%);
+}
