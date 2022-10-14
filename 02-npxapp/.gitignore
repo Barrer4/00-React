@@ -26,3 +26,8 @@ yarn-error.log*
 package-lock.json
 package.json
 /src/reportWebVitals.js
+
+/public
+/src/Header.css
+/src/Footer.css
+/src/Main.css

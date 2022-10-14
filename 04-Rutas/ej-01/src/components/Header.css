@@ -1,0 +1,17 @@
+.header ul {
+   list-style-type: none;
+   margin: 0;
+   padding: 0;
+   overflow: hidden;
+   background-color: #24106A;
+}
+
+.header li {
+   float: left;
+}
+
+
+/* Change the link color to #111 (black) on hover */
+.header li a:hover {
+   background-color: #1B0C4F;
+}

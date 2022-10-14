@@ -47,7 +47,7 @@ function App() {
     } else if (square[6] && square[6] === square[4] && square[6] === square[2]) {
       return (<p>The winner is: {square[6]}</p>)
     } else {
-      return (<p>Active player: {player}</p>) 
+      return (<p>Active player: {player}</p>)
     }
   }
 
@@ -71,13 +71,10 @@ function App() {
         </div>
       </div>
       <div className='winner'>
-      {winner}
+        {winner}
       </div>
     </div>
-
-
   );
+}
 
-
-  }
-  export default App;
+export default App;
