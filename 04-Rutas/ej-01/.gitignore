@@ -23,3 +23,6 @@ yarn-debug.log*
 yarn-error.log*
 
 /public
+/components/Header.css
+/App.css
+/index.css
