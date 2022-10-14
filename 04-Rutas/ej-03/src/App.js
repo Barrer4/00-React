@@ -28,7 +28,7 @@ function App() {
            return (
             <Route
               path={'/' + game.title.replaceAll(' ', '-')}
-              element={<Game full={true} image={game.image} title={game.title} gameplay={game.gameplay} />} />
+              element={<Game key={i} full={true} image={game.image} title={game.title} gameplay={game.gameplay} />} />
           )
         })}
         </Routes>
