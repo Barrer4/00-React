@@ -4,7 +4,6 @@
 class Distancia {
    constructor(millas) {
       this.millas = millas
-      console.log(millas + ' millas')
    }
 
    millasAMetros(){
