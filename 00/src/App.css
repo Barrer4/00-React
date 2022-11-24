@@ -1,0 +1,22 @@
+body {
+   background-color: #FFFFE5;
+}
+
+h3 {
+   font-weight: 600;
+}
+
+/*Colors*/
+:root {
+   --light-main-color: #80E7E8;
+	--dark-main-color: #009A9C;
+	--main-color: #00CED1;
+
+	--light-second-color: #E6E680;
+	--dark-second-color: #999900;
+	--second-color: #CCCC00;
+
+	--light-third-color: #E680E6;
+	--dark-third-color: #990099;
+	--third-color: #CC00CC;
+}
