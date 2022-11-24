@@ -1,0 +1,24 @@
+.page-link:hover {
+   background-color: var(--info_t3);
+   color: var(--info_t5);
+   border-color: var(--info_t5);
+   font-weight: 500;
+}
+
+.page-link {
+   color: var(--dark);
+   border: var(--dark_t4) 1px solid ;
+}
+
+.active>.page-link,
+.page-link.active {
+   background: var(--info_t1);
+   border-color: var(--info_t1);
+}
+
+.active>.page-link:hover,
+.page-link.active:hover {
+   background: var(--info_t1);
+   border-color: var(--info_t5);
+   font-weight: 800;
+}

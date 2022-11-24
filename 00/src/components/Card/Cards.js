@@ -13,15 +13,15 @@ function Cards(props) {
   let [showInfo, setShowInfo] = useState(false)
 
   return (
-    <Card className="cardPrdct">
-      <Card.Img className="cardImg"
+    <Card className="card-prdct">
+      <Card.Img className="card-img"
         variant="top"
         src={props.image[0]}
         alt={props.title}
       />
       <Card.Body
-        className="cardBdy">
-        <Card.Title>{props.title}</Card.Title>
+        className="card-bdy">
+        <Card.Title><h4>{props.title}</h4></Card.Title>
         <Card.Text>
          
           <h3>{props.price}.-</h3>

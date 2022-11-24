@@ -1,0 +1,13 @@
+.loading-btn {
+   padding: auto;
+   width: 100%;
+   display: flex;
+   justify-content: center;
+}
+
+.row-cstm {
+   margin-top: 8rem;
+   margin-bottom: 8rem;
+   display: flex;
+   justify-content: center;
+}

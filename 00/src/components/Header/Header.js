@@ -5,14 +5,11 @@ import {  Container, Nav, Navbar, NavDropdown } from 'react-bootstrap'
 //Style
 import './Header.css'
 
-//Components
-
-
 export default function Header() {
 
   return (
     <>
-      <Navbar bg="light" expand="lg">
+      <Navbar id='navbar'bg="light" expand="lg" >
         <Container fluid>
           <Navbar.Brand
             href="/">

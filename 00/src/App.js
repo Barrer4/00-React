@@ -2,14 +2,15 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react'
 
 //Style
-import './App.css'
+import "./App.css"
+import "./Colors.css"
 
 //Components
 import Header from './components/Header/Header'
 import Footer from './components/Footer'
 
 //Pages
-import Home from './pages/Home'
+import Home from './pages/Home/Home'
 import ContactForm from './pages/ContactForm'
 import ShoppingCart from './pages/ShoppingCart'
 
@@ -22,7 +23,7 @@ function App() {
   let [currentPage, setCurrentPage] = useState(1)
   let [productsPerPage] = useState(12)
   let [totalProducts, setTotalProducts] = useState('')
-  let [categories, setCategories] = useState('')
+  let [setCategories] = useState('')
 
 
   let [url, setUrl] = useState(`https://dummyjson.com/products?limit=${productsPerPage}&skip=${productsPerPage * (currentPage - 1)}`)

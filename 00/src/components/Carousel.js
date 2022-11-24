@@ -10,11 +10,11 @@ function ControlledCarousel() {
   };
 
   return (
-    <Carousel id="carousel" activeIndex={index} onSelect={handleSelect}>
+    <Carousel activeIndex={index} onSelect={handleSelect}>
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src={"/* ../pexels-ella-olsson-1640775.jpg */"}
+          src="./images/pexels-bibhash-(knapsnacklife)-banerjee-1047254.jpg"
           alt="First slide"
         />
         <Carousel.Caption>
@@ -25,7 +25,7 @@ function ControlledCarousel() {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="holder.js/800x400?text=Second slide&bg=282c34"
+          src="./images/pexels-jean-van-der-meulen-1454806.jpg"
           alt="Second slide"
         />
 
@@ -37,7 +37,7 @@ function ControlledCarousel() {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="holder.js/800x400?text=Third slide&bg=20232a"
+          src="../images/pexels-tim-gouw-240225.jpg"
           alt="Third slide"
         />
 
