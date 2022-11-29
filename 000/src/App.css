@@ -18,3 +18,9 @@
    object-fit: scale-down; 
   
 }
+
+.logo-img {
+   width: 6rem;
+   vertical-align: middle;
+   height: 100%;
+}

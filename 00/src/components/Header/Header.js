@@ -1,7 +1,7 @@
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 //Components
-import Categories from './Categories'
+import Categories from './Categories';
 
 //Bootstrap Components
 import Button from 'react-bootstrap/Button';
@@ -11,13 +11,10 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
-
-
 //Style
-import './Header.css'
+import './Header.css';
 
 export default function Header(props) {
-
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
@@ -35,7 +32,8 @@ export default function Header(props) {
               setSelect={props.setSelect}
               setUrl={props.setUrl}
               filterByCategory={props.filterByCategory}
-               />
+            />
+            
             <NavDropdown title="Link" id="navbarScrollingDropdown">
               <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action4">
@@ -54,13 +52,21 @@ export default function Header(props) {
               className="me-2"
               value={props.input}
               aria-label="Search"
-              onChange={(e)=> props.setInput(e.target.value)}
+              onChange={(e) => props.setInput(e.target.value)}
             />
-            <Link to={'category/' + props.input}><Button variant="outline-success" onClick={()=> {return (props.setInput(props.input), console.log(props.input))}}>Search</Button></Link>
+            <Link to={'category/' + props.input}>
+              <Button
+                variant="outline-success"
+                onClick={() => {
+                  return props.setInput(props.input), console.log(props.input);
+                }}
+              >
+                Search
+              </Button>
+            </Link>
           </Form>
         </Navbar.Collapse>
       </Container>
     </Navbar>
-  )
+  );
 }
-
