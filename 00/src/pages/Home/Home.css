@@ -3,7 +3,15 @@
    width: 100%;
    display: flex;
    justify-content: center;
+   vertical-align: baseline;
+   height: 2rem;
 }
+
+.loading-p {
+   margin-left: 1rem;
+}
+
+
 
 .row-cstm {
    margin-top: 8rem;

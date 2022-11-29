@@ -15,7 +15,7 @@ function ProductInfo(props) {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header id="pdctModal">
+      <Modal.Header >
         <Modal.Title id="contained-modal-title-vcenter">
           <h4>{props.info.title}</h4>
         </Modal.Title>
@@ -26,7 +26,8 @@ function ProductInfo(props) {
         <p>{props.info.stock}</p>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={props.close}>Close</Button>
+        <Button variant='info' onClick={props.close}>Close</Button>
+        <Button variant='primary' style={{color: 'var(--light_t3)'}} onClick={props.close}>Add to cart</Button>
       </Modal.Footer>
     </Modal>
   );

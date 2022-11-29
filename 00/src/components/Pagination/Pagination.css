@@ -1,3 +1,6 @@
+.pagination {
+   justify-content: center;
+}
 .page-link:hover {
    background-color: var(--info_t3);
    color: var(--info_t5);
@@ -7,7 +10,7 @@
 
 .page-link {
    color: var(--dark);
-   border: var(--dark_t4) 1px solid ;
+   border: var(--dark_t4) 1px solid;
 }
 
 .active>.page-link,

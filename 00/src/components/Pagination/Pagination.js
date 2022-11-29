@@ -9,7 +9,7 @@ import './Pagination.css'
 function Pages(props) {
    let active = props.currentPage
 
-   let totalPages = (props.totalProducts / props.productsPerPage)
+   let totalPages = Math.ceil(props.totalProducts / props.productsPerPage)
 
    let pageNumbers = []
    for (let number = 1; number <= (totalPages); number++) {
@@ -27,14 +27,14 @@ function Pages(props) {
             <Col></Col>
             <Col>
 
-               <Pagination >
+               <Pagination variation="info">
 
                   {(active <= 1)
                      ? <Pagination.First disabled />
-                     : <Pagination.First bsPrefix='custom-pagBtn'onClick={() => props.paginate(1)} />}
+                     : <Pagination.First bsprefix='custom-pagBtn'onClick={() => props.paginate(1)} />}
                   {(active <= 1)
-                     ? <Pagination.Prev bsPrefix='custom-pagBtn' disabled/>
-                     : <Pagination.Prev bsPrefix='custom-pagBtn'onClick={() => props.paginate(active - 1)} />}
+                     ? <Pagination.Prev bsprefix='custom-pagBtn' disabled/>
+                     : <Pagination.Prev bsprefix='custom-pagBtn'onClick={() => props.paginate(active - 1)} />}
 
                   {pageNumbers}
 

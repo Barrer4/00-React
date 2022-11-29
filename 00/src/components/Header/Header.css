@@ -2,3 +2,13 @@
   background-color: var(--primary) !important;
   color: var(--light-shade) !important;
 }
+
+a[id$=link-offcanvas].nav-link {
+  padding: 0.4rem;
+  font-size: small;
+}
+
+.btn-close {
+  color: var(--info_t4)
+}
+

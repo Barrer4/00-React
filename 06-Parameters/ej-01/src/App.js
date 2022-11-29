@@ -1,13 +1,12 @@
 
 import './App.css';
-import { useState } from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Saludo from './components/Saludo';
 
 
 
 function App() {
-  const [input, setInput] = useState('')
+
 
   return (
     <BrowserRouter className="App">
