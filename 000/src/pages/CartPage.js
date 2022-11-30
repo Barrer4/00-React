@@ -8,35 +8,56 @@ import Col from 'react-bootstrap/Col';
 
 import Button from 'react-bootstrap/Button';
 
-function CartPage() {
+function CartPage(props) {
   return (
-    <Container className="mt-3">
+    <Container className="mt-5">
       <Row>
-        <Col md={2}>
-          <h4>.</h4>
-        </Col>
-        <Col md={6}>
-          <h4>Products</h4>
-        </Col>
-        <Col md={2}>
-          <h4>Qty</h4>
-        </Col>
-        <Col md={2}>
-          <h4>Price</h4>
-        </Col>
+        <h1>Shopping Cart</h1>
       </Row>
       <Row>
-      <Col >
-          <Link to="/" className="d-grid gap-2">
-            <Button>Keep shopping</Button>
-          </Link>
-       </Col>
-       <Col >
-          <Link to="/checkout" className="d-grid gap-2">
-            <Button>Check out</Button>
-          </Link>
-        </Col>
+        {props.cartItems.length === 0 ? (
+          <div className="mt-4">
+            <h5>Your cart is empty</h5>
+            <p>
+              You can go back to the store to add products to your basket 😊
+            </p>{' '}
+          </div>
+        ) : (
+          ''
+        )}
       </Row>
+
+      {props.cartItems.map((item) => (
+        <Row key={item.id}>
+          <Col>{item.title}</Col>
+          <Col>
+            <Button onClick={() => props.plusItem(item)} className="add">
+              {' '}
+              +{' '}
+            </Button>
+            <Button onClick={() => props.minusItem(item)} className="remove">
+              {' '}
+              -{' '}
+            </Button>
+          </Col>
+          <Col>{item.qty} </Col>
+          <Col>
+            <p> x </p>
+          </Col>
+          <Col> {item.price.toFixed(2)}</Col>
+        </Row>
+      ))}
+
+      <Col>
+        <Link to="/" className="d-grid gap-2">
+          <Button>Keep shopping</Button>
+        </Link>
+      </Col>
+      <Col>
+        <Link to="/checkout" className="d-grid gap-2">
+          <Button>Check out</Button>
+        </Link>
+      </Col>
     </Container>
   );
 }

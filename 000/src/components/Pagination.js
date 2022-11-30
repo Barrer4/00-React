@@ -20,7 +20,7 @@ function Pages(props) {
   }
 
   return (
-    <Container className="m-3">
+    <Container className="m-3 justify-content-center">
       <Row>
         <Col></Col>
         <Col>

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import LoadingStatus from '../components/LoadingStatus';
 import Product from '../components/Product';
 import Pagination from '../components/Pagination';
+import Slides from '../components/Slides';
 
 //Bootstrap Components
 import Row from 'react-bootstrap/Row';
@@ -18,11 +19,11 @@ function HomePage(props) {
   let [productsPerPage] = useState(12);
   let [totalProducts, setTotalProducts] = useState('');
 
+  
 
   //Page selection
   function paginating(pageNumber) {
     return (
-      props.setUrl(''),
       setCurrentPage(pageNumber),
       props.setUrl(
         `https://dummyjson.com/products?limit=${productsPerPage}&skip=${
@@ -51,35 +52,46 @@ function HomePage(props) {
   }
 
   return (
-    <Container className="mt-3">
-      <Row className="row-cstm">
-        {products.map((product, i) => (
-          <Col key={i} sm={6} md={4} lg={3} className="mb-3 text-center">
-            <Product
-              id={product.id}
-              title={product.title}
-              info={product.description}
-              price={product.price}
-              discount={product.discountPercentage}
-              rating={product.rating}
-              stock={product.stock}
-              brand={product.brand}
-              category={product.category}
-              thumbnail={product.thumbnail}
-              images={product.images}
+    <>
+      <Slides props={props} />
+      <Container className="mt-5">
+        <Row className="row-cstm">
+          {products.map((product, i) => (
+            <Col key={i} sm={6} md={4} lg={3} className="mb-3 text-center">
+              <Product
+                id={product.id}
+                title={product.title}
+                info={product.description}
+                price={product.price}
+                discount={product.discountPercentage}
+                rating={product.rating}
+                stock={product.stock}
+                brand={product.brand}
+                category={product.category}
+                thumbnail={product.thumbnail}
+                images={product.images}
+                cartItems={props.cartItems}
+                setCartItems={props.setCartItems}
+                plusItem={props.plusItem} 
+              />
+            </Col>
+          ))}
+        </Row>
+        <Row>
+          <Col></Col>
+          <Col>
+            <Pagination
+              products={products}
+              totalProducts={totalProducts}
+              currentPage={currentPage}
+              productsPerPage={productsPerPage}
+              paginating={paginating}
             />
           </Col>
-        ))}
-      </Row>
-
-      <Pagination
-        products={products}
-        totalProducts={totalProducts}
-        currentPage={currentPage}
-        productsPerPage={productsPerPage}
-        paginating={paginating}
-      />
-    </Container>
+          <Col></Col>
+        </Row>
+      </Container>
+    </>
   );
 }
 

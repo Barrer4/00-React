@@ -18,7 +18,9 @@ export default function Header(props) {
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
-        <Navbar.Brand href="/">BRAND</Navbar.Brand>
+        <Navbar.Brand href="/">
+          CARA Store
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -33,7 +35,7 @@ export default function Header(props) {
               setUrl={props.setUrl}
               filterByCategory={props.filterByCategory}
             />
-            
+
             <NavDropdown title="Link" id="navbarScrollingDropdown">
               <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action4">
@@ -58,7 +60,7 @@ export default function Header(props) {
               <Button
                 variant="outline-success"
                 onClick={() => {
-                  return props.setInput(props.input), console.log(props.input);
+                  return props.setInput(props.input);
                 }}
               >
                 Search

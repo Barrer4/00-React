@@ -13,14 +13,14 @@ import Badge from 'react-bootstrap/Badge';
 import Rating from '../components/Rating';
 import LoadingStatus from '../components/LoadingStatus';
 
-function ProductPage() {
+function ProductPage(props) {
   let params = useParams();
   let { id } = params;
-  console.log(id);
 
   let url = 'https://dummyjson.com/products/' + id;
   let [product, setProduct] = useState([]);
   let [loading, setLoading] = useState(false);
+ 
 
   useEffect(() => {
     async function fetchproduct() {
@@ -28,9 +28,9 @@ function ProductPage() {
       await fetch(url)
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           setProduct(data);
           setLoading(false);
+        
         })
         .catch((error) => (
           <div>
@@ -46,7 +46,7 @@ function ProductPage() {
   }
 
   return (
-    <Container className="mt-3">
+    <Container className="mt-5 mb-5">
       <Row className="mt-3">
         <Col>
           <h1>{product.title}</h1>
@@ -80,15 +80,14 @@ function ProductPage() {
             </ListGroup.Item>
             <ListGroup.Item>{product.description}</ListGroup.Item>
           </ListGroup>
-        </Col>
-      </Row>
-      <Row className="mt-3">
-        <Col className="d-grid gap-2">
-          <Button className={product.stock < 1 ? 'disabled' : ''}>
+          <div className='mt-4 text-end' >
+          <Button className={product.stock < 1 ? 'disabled w-25' : 'w-25'}>
             Add to cart
           </Button>
+          </div>
         </Col>
       </Row>
+     
     </Container>
   );
 }

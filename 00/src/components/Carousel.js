@@ -24,7 +24,7 @@ function ControlledCarousel() {
       </Carousel.Item>
       <Carousel.Item>
         <img
-          className="d-block w-100"
+          className=" d-block w-100"
           src="./images/pexels-jean-van-der-meulen-1454806.jpg"
           alt="Second slide"
         />
@@ -36,7 +36,7 @@ function ControlledCarousel() {
       </Carousel.Item>
       <Carousel.Item>
         <img
-          className="d-block w-100"
+          className=" d-block w-100"
           src="../images/pexels-tim-gouw-240225.jpg"
           alt="Third slide"
         />

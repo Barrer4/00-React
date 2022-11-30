@@ -4,38 +4,39 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 //Bootstrap Components
-import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
 
 //Components
 import Rating from './Rating';
 
-function Product(product) {
+function Product(props) {
+
   return (
     <Card className="product">
-      <Link to={'/product/' + product.id}>
+      <Link to={'/product/' + props.id}>
         <Card.Img
           className="card-img"
           variant="top"
-          src={product.images[0]}
-          alt={product.title}
+          src={props.images[0]}
+          alt={props.title}
         />
       </Link>
       <Card.Body>
-        <Link to={'/product/' + product.id}>
-          <Card.Title>{product.title}</Card.Title>
+        <Link to={'/product/' + props.id}>
+          <Card.Title>{props.title}</Card.Title>
         </Link>
-        <Card.Text>{product.info}</Card.Text>
+        <Card.Text>{props.info}</Card.Text>
       </Card.Body>
       <ListGroup className="list-group-flush">
-        <ListGroup.Item>€ {product.price} .-</ListGroup.Item>
+        <ListGroup.Item>€ {props.price} .-</ListGroup.Item>
         <ListGroup.Item>
-          <Rating rating={product.rating} />
+          <Rating rating={props.rating} />
         </ListGroup.Item>
       </ListGroup>
       <Card.Body className="d-grid gap-2">
-        <Card.Link href={'/' + product.id}>Add to cart</Card.Link>
+        <Button onClick={()=> props.plusItem(props)}>Add to cart</Button>
       </Card.Body>
     </Card>
   );

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import LoadingStatus from './LoadingStatus';
 
 //Bootstrap Components
 import Offcanvas from 'react-bootstrap/Offcanvas';
@@ -27,14 +26,20 @@ function Categories(props) {
             );
           });
           setCategories(categories);
+          setSelect(select);
           setLoading(false);
         });
     }
     fetchCategories();
-  }, [select, url]);
+  }, [url, select]);
 
   if (loading) {
-    return <LoadingStatus />;
+    return (
+      <Nav.Link variant="default" disabled>
+        {' '}
+        Loading...{' '}
+      </Nav.Link>
+    );
   }
 
   return (
@@ -45,18 +50,20 @@ function Categories(props) {
 
       <Offcanvas show={show} onHide={handleClose}>
         <Offcanvas.Header variant="primary" closeButton>
-          <Offcanvas.Title>BRAND</Offcanvas.Title>
+          <Offcanvas.Title >CARA Store</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           <h5>Categories</h5>
           {categories.map((category, i) => {
             return (
               <Nav.Link
+                className="mt-2"
+                href={'/category/' + category}
                 key={i}
                 id={`${i}-link-offcanvas`}
                 value={category}
                 onClick={() => {
-                  return (handleClose(), props.filterByCategory(category))
+                  return (handleClose(), props.filterByCategory(category));
                 }}
               >
                 {category}

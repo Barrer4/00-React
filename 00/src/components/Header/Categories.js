@@ -29,7 +29,7 @@ export default function Categories(props) {
 
          <Offcanvas show={show} onHide={handleClose}>
             <Offcanvas.Header variant='primary' closeButton>
-               <Offcanvas.Title>BRAND</Offcanvas.Title>
+               <Offcanvas.Title>Lala Store</Offcanvas.Title>
 
             </Offcanvas.Header>
             <Offcanvas.Body>
