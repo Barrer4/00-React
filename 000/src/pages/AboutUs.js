@@ -1,6 +1,7 @@
 import React from 'react'
 
-function AboutUs() {
+function AboutUs(props) {
+
   return (
     <div>AboutUs</div>
   )

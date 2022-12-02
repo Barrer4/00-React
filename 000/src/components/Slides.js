@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import Carousel from 'react-bootstrap/Carousel';
 
-//Images
+
+//Carousel Images
 import Clothes from '../components/images/carousel/clothes.jpg';
 import Phone from '../components/images/carousel/phone.jpg';
 import Shoes from '../components/images/carousel/shoes.jpg';
 import Food from '../components/images/carousel/food.jpg';
 import Mix from '../components/images/carousel/mix.jpg';
+
+//Bootstrap Components
+import Carousel from 'react-bootstrap/Carousel';
 
 function Slides() {
   const [index, setIndex] = useState(0);

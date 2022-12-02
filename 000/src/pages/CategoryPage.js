@@ -58,23 +58,13 @@ function CategoryPage(props) {
     <Container className="mt-5">
       <Row className="row-cstm">
         {products.map((product, i) => (
-          <Col key={i} sm={6} md={4} lg={3} className="mb-3 text-center">
+          <Col key={product.id} sm={6} md={4} lg={3} className="mb-3 text-center">
             <Product
-              id={product.id}
-              title={product.title}
-              info={product.description}
-              price={product.price}
-              discount={product.discountPercentage}
-              rating={product.rating}
-              stock={product.stock}
-              brand={product.brand}
-              category={product.category}
-              thumbnail={product.thumbnail}
-              images={product.images}
-              cartItems={props.cartItems}
-              setCartItems={props.setCartItems}
-              plusItem={props.plusItem}
-            />
+                product={product}
+                cartItems={props.cartItems}
+                setCartItems={props.setCartItems}
+                addItem={props.addItem}
+              />
           </Col>
         ))}
       </Row>

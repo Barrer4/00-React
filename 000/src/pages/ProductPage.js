@@ -20,7 +20,6 @@ function ProductPage(props) {
   let url = 'https://dummyjson.com/products/' + id;
   let [product, setProduct] = useState([]);
   let [loading, setLoading] = useState(false);
- 
 
   useEffect(() => {
     async function fetchproduct() {
@@ -30,7 +29,6 @@ function ProductPage(props) {
         .then((data) => {
           setProduct(data);
           setLoading(false);
-        
         })
         .catch((error) => (
           <div>
@@ -44,7 +42,7 @@ function ProductPage(props) {
   if (loading) {
     return <LoadingStatus />;
   }
-
+  let addItem = props.addItem;
   return (
     <Container className="mt-5 mb-5">
       <Row className="mt-3">
@@ -80,14 +78,18 @@ function ProductPage(props) {
             </ListGroup.Item>
             <ListGroup.Item>{product.description}</ListGroup.Item>
           </ListGroup>
-          <div className='mt-4 text-end' >
-          <Button className={product.stock < 1 ? 'disabled w-25' : 'w-25'}>
-            Add to cart
-          </Button>
+          <div className="mt-4 text-end">
+            <Button
+              className={product.stock < 1 ? 'disabled w-25' : 'w-25'}
+              onClick={() => {
+                addItem(product);
+              }}
+            >
+              Add to cart
+            </Button>
           </div>
         </Col>
       </Row>
-     
     </Container>
   );
 }

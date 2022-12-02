@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+//React-router-dom Components
+import { Link } from 'react-router-dom';
 
 //Bootstrap Components
 import Offcanvas from 'react-bootstrap/Offcanvas';
@@ -50,23 +52,25 @@ function Categories(props) {
 
       <Offcanvas show={show} onHide={handleClose}>
         <Offcanvas.Header variant="primary" closeButton>
-          <Offcanvas.Title >CARA Store</Offcanvas.Title>
+          <Offcanvas.Title>CARA Store</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           <h5>Categories</h5>
           {categories.map((category, i) => {
             return (
-              <Nav.Link
-                className="mt-2"
-                href={'/category/' + category}
-                key={i}
-                id={`${i}-link-offcanvas`}
-                value={category}
-                onClick={() => {
-                  return (handleClose(), props.filterByCategory(category));
-                }}
-              >
-                {category}
+              <Nav.Link className="mt-2">
+                <Link
+                className="category-link"
+                  to={'/category/' + category}
+                  key={i}
+                  id={`${i}-link-offcanvas`}
+                  value={category}
+                  onClick={() => {
+                    return handleClose(), props.filterByCategory(category);
+                  }}
+                >
+                  {category}
+                </Link>
               </Nav.Link>
             );
           })}

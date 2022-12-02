@@ -7,7 +7,8 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-function LoginPage() {
+function LoginPage(props) {
+  console.log(props)
   return (
     <Container className="mt-3">
       <Row>

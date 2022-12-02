@@ -12,31 +12,46 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Rating from './Rating';
 
 function Product(props) {
+  let {
+    id,
+    title,
+    info,
+    price,
+    rating,
+    images,
+  } = props.product;
 
+  let addItem = props.addItem;
+  
   return (
     <Card className="product">
-      <Link to={'/product/' + props.id}>
+      <Link to={'/product/' + id}>
         <Card.Img
           className="card-img"
           variant="top"
-          src={props.images[0]}
-          alt={props.title}
+          src={images[0]}
+          alt={title}
         />
       </Link>
       <Card.Body>
-        <Link to={'/product/' + props.id}>
-          <Card.Title>{props.title}</Card.Title>
+        <Link to={'/product/' + id}>
+          <Card.Title>{title}</Card.Title>
         </Link>
-        <Card.Text>{props.info}</Card.Text>
+        <Card.Text>{info}</Card.Text>
       </Card.Body>
       <ListGroup className="list-group-flush">
-        <ListGroup.Item>€ {props.price} .-</ListGroup.Item>
+        <ListGroup.Item>€ {price} .-</ListGroup.Item>
         <ListGroup.Item>
-          <Rating rating={props.rating} />
+          <Rating rating={rating} />
         </ListGroup.Item>
       </ListGroup>
       <Card.Body className="d-grid gap-2">
-        <Button onClick={()=> props.plusItem(props)}>Add to cart</Button>
+        <Button
+          onClick={() => addItem(props.product)
+          }
+        >
+          Add to cart
+        </Button>
       </Card.Body>
     </Card>
   );

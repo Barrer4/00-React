@@ -70,6 +70,18 @@
     min-height: 300px;
 }
 
+.navbar-brand {
+  text-decoration: none;
+  color: var(--primary-color);
+  font-weight: 500;
+  margin-right: 0.5rem;
+}
+
+.category-link {
+  text-decoration: none;
+  color: var(--default_shadow);
+  margin-left: 0.8rem;
+}
 /* .add-btn {}
 
 .remove-btn{}

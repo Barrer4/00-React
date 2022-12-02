@@ -13,11 +13,10 @@ import HomePage from './pages/HomePage';
 import ProductPage from './pages/ProductPage';
 import Footer from './components/Footer';
 import CartPage from './pages/CartPage';
-import LoginPage from './pages/LoginPage';
 import LoadingStatus from './components/LoadingStatus';
 import NotFoundPage from './pages/NotFoundPage';
-import PaymentPage from './pages/PaymentPage';
 import CategoryPage from './pages/CategoryPage';
+import AboutUs from './pages/AboutUs';
 
 function App() {
   let [currentPage] = useState(1);
@@ -43,15 +42,37 @@ function App() {
     );
   }
 
-  //To add products to the cart
-  function plusItem(item) {
-    let exist = cartItems.find((x) => x.id === item.id);
-    if (exist) {
-      setCartItems((x) =>
-        x.id === item.id ? { ...exist, qty: exist.qty + 1 } : x
+  function addItem(newItem) {
+    let itemExists = cartItems.find(
+      (itemInCart) => itemInCart.id === newItem.id
+    );
+    if (itemExists) {
+      setCartItems(
+        cartItems.map((itemInCart) =>
+          itemInCart.id === newItem.id
+            ? { ...itemInCart, quantity: itemInCart.quantity + 1 }
+            : itemInCart
+        )
       );
     } else {
-      setCartItems([...cartItems, { ...item, qty: 1 }]);
+      setCartItems([...cartItems, { ...newItem, quantity: 1 }]);
+    }
+  }
+
+  function removeItem(oldItem) {
+    let itemExists = cartItems.find(
+      (itemInCart) => itemInCart.id === oldItem.id
+    );
+    if (itemExists.quantity === 1) {
+      setCartItems(cartItems.filter((itemInCart) => itemInCart.id !== oldItem.id))
+    } else {
+      setCartItems(
+        cartItems.map((itemInCart) =>
+          itemInCart.id === oldItem.id
+            ? { ...itemInCart, quantity: itemInCart.quantity - 1 }
+            : itemInCart
+        )
+      );
     }
   }
 
@@ -63,7 +84,7 @@ function App() {
     <BrowserRouter>
       <div className="d-flex flex-column site-container">
         <header>
-          <Header filterByCategory={filterByCategory} />
+          <Header filterByCategory={filterByCategory} cartItems={cartItems} />
         </header>
         <main>
           <Container>
@@ -76,41 +97,26 @@ function App() {
                     url={url}
                     setUrl={setUrl}
                     filterByCategory={filterByCategory}
-                    cartItems={cartItems}
-                    setCartItems={setCartItems}
-                    plusItem={plusItem}
-                  />
-                }
-              />
-              <Route
-                path="/"
-                element={
-                  <HomePage
-                    url={url}
-                    setUrl={setUrl}
-                    cartItems={cartItems}
-                    setCartItems={setCartItems}
-                    plusItem={plusItem}
+                    addItem={addItem}
                   />
                 }
               />
 
               <Route
+                path="/"
+                element={
+                  <HomePage url={url} setUrl={setUrl} addItem={addItem} />
+                }
+              />
+            
+              <Route
                 path="/product/:id"
-                element={<ProductPage url={url} plusItem={plusItem} />}
+                element={<ProductPage url={url} addItem={addItem} />}
               />
               <Route
                 path="/cart"
-                element={
-                  <CartPage
-                    cartItems={cartItems}
-                    setCartItems={setCartItems}
-                    plusItem={plusItem}
-                  />
-                }
+                element={<CartPage addItem={addItem} removeItem={removeItem} cartItems={cartItems} />}
               />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/payment" element={<PaymentPage />} />
               <Route path="/*" element={<NotFoundPage />} />
             </Routes>
           </Container>
