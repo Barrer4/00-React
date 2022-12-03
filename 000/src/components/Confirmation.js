@@ -10,9 +10,10 @@ import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 
 
-function Confirmation() {
+function Confirmation(props) {
+  
   return (
-   <Container>
+   <Container className='mt-5'>
    <Row>
      <Col md={3}></Col>
      <Col md={6}>
@@ -21,23 +22,17 @@ function Confirmation() {
            style={{
              margin: 'auto',
              justifySelf: 'center',
-             width: '100%',
+             width: '70%',
              objectFit: 'contain',
            }}
            src={Sent}
            alt="sent"
          />
        </Row>
-       <Row className="mt-3 d-flex text-center">
-
-      {/*  {props.error ? (
-         <>
-           <h3> We do not have the product you are looking for. </h3>
-           <p>Please, try another search</p>{' '}
-         </>
-       ) : (
-         <h2>It seems the server could not handle your awesomeness!</h2>
-       )} */}
+       <Row className="mt-5 d-flex text-center">
+           <h3> {props.form.name + '! Thank you for reaching us'} </h3>
+           <p>We will come back to you as soon as possible</p>
+       
      </Row>
      </Col>
      <Col md={3}></Col>
@@ -46,4 +41,4 @@ function Confirmation() {
   )
 }
 
-export default Confirmation
+export default Confirmation;

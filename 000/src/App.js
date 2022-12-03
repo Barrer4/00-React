@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 //Style
 import './App.css';
+ import './colors.css'; 
 
 //Bootstrap Components
 import Container from 'react-bootstrap/Container';
@@ -17,13 +18,19 @@ import LoadingStatus from './components/LoadingStatus';
 import NotFoundPage from './pages/NotFoundPage';
 import ErrorStatus from './components/ErrorStatus';
 import ContactUs from './pages/ContactUs';
+import SignInPage from './pages/SignInPage';
 
 function App() {
   let [currentPage] = useState(1);
   let [productsPerPage] = useState(12);
   let [category, setCategory] = useState('all');
   let loading = false;
-  let [cartItems, setCartItems] = useState([]);
+  let [user, setUser] = useState({})
+  let [cartItems, setCartItems] = useState(
+    localStorage.getItem('cartItems')
+      ? JSON.parse(localStorage.getItem('cartItems'))
+      : []
+  );
 
   //Returns all products
   let [url, setUrl] = useState(
@@ -43,9 +50,13 @@ function App() {
 
   //To search products
   function search(query) {
-    return setUrl('https://dummyjson.com/products/search?q=' + query);
+     setUrl('https://dummyjson.com/products/search?q=' + query);
   }
 
+  //To check user
+  function userLogged(info) {
+   return setUser(info)
+  }
   //To add products to the cart
   function addItem(newItem) {
     let itemExists = cartItems.find(
@@ -55,13 +66,14 @@ function App() {
       setCartItems(
         cartItems.map((itemInCart) =>
           itemInCart.id === newItem.id
-            ? { ...itemInCart, quantity: itemInCart.quantity + 1 }
+            ? { ...itemInCart, quantity: ++itemInCart.quantity }
             : itemInCart
         )
       );
     } else {
       setCartItems([...cartItems, { ...newItem, quantity: 1 }]);
     }
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
   }
 
   //To remove products from the cart
@@ -77,11 +89,24 @@ function App() {
       setCartItems(
         cartItems.map((itemInCart) =>
           itemInCart.id === oldItem.id
-            ? { ...itemInCart, quantity: itemInCart.quantity - 1 }
+            ? { ...itemInCart, quantity: --itemInCart.quantity }
             : itemInCart
         )
       );
     }
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  }
+
+  function deleteItem(oldItem) {
+    let itemExists = cartItems.find(
+      (itemInCart) => itemInCart.id === oldItem.id
+    );
+    if (itemExists) {
+      setCartItems(
+        cartItems.filter((itemInCart) => itemInCart.id !== oldItem.id)
+      );
+    }
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
   }
 
   if (loading) {
@@ -97,6 +122,7 @@ function App() {
             cartItems={cartItems}
             productsPerPage={productsPerPage}
             currentPage={currentPage}
+            user={user}
           />
         </header>
         <main>
@@ -127,12 +153,14 @@ function App() {
                   <CartPage
                     addItem={addItem}
                     removeItem={removeItem}
+                    deleteItem={deleteItem}
                     cartItems={cartItems}
                   />
                 }
               />
               <Route path="/error" element={<ErrorStatus />} />
               <Route path="/*" element={<NotFoundPage />} />
+              <Route path='/signin'  element={<SignInPage userLogged={userLogged} />} />
               <Route
                 path="/"
                 element={

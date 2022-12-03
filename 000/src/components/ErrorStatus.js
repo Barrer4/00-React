@@ -32,7 +32,7 @@ function ErrorStatus(props) {
 
           {props.error ? (
             <>
-              <h3> We do not have the product you are looking for. </h3>
+              <h3> We do not have the product you are looking for </h3>
               <p>Please, try another search</p>{' '}
             </>
           ) : (

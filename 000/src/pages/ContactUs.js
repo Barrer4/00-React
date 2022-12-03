@@ -6,10 +6,11 @@ import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 //Components
 import Confirmation from '../components/Confirmation';
 
-
 function ContactUs() {
   let [form, setForm] = useState({});
   let [errors, setErrors] = useState({});
+  let [formValidation, setFormValidation] = useState('')
+
   let setField = (field, value) => {
     setForm({ ...form, [field]: value });
 
@@ -28,12 +29,12 @@ function ContactUs() {
     if (!surname || surname === '') {
       newErrors.surname = 'Please enter your surname';
     }
-    if (!email || email === '') {
-      newErrors.email = 'Please enter your email';
-    }
-
-    if (!email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
-      newErrors.email = 'The format is incorrect. Please enter a valid email';
+    if (
+      !email ||
+      email === '' ||
+      !email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
+    ) {
+      newErrors.email = 'Please enter a valid email';
     }
 
     if (!category || category === 'Click to select category') {
@@ -42,21 +43,25 @@ function ContactUs() {
     if (!comments || comments === '') {
       newErrors.comments = 'Please enter your comments';
     }
-
     return newErrors;
   }
+
   function sendForm(e) {
     e.preventDefault();
-
     let formErrors = validateForm();
 
     if (Object.keys(formErrors).length > 0) {
       setErrors(formErrors);
     } else {
-      return <Confirmation />;
+      setFormValidation('ok');
+     ;
     }
   }
 
+  if(formValidation === 'ok')
+  {
+    return <Confirmation form={form} />
+  }
   return (
     <Container className="mt-3">
       <Row>
@@ -143,7 +148,7 @@ function ContactUs() {
               controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label className="mt-3">
-                Please, write below your comments
+                Please, write your comments below
               </Form.Label>
               <Form.Control
                 as="textarea"

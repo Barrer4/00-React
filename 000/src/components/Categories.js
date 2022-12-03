@@ -57,13 +57,17 @@ function Categories(props) {
 
   return (
     <>
-      <Nav.Link variant="primary" onClick={handleShow}>
+      <Nav.Link
+        id="category"
+        variant="light"
+        onClick={handleShow}
+      >
         Categories
       </Nav.Link>
 
       <Offcanvas show={show} onHide={handleClose}>
         <Offcanvas.Header variant="primary" closeButton>
-          <Offcanvas.Title>CARA Store</Offcanvas.Title>
+          <Offcanvas.Title className="navbar-brand">CARA Store</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           <h5>Categories</h5>

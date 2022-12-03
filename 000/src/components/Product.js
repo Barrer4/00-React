@@ -12,17 +12,10 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Rating from './Rating';
 
 function Product(props) {
-  let {
-    id,
-    info,
-    price,
-    rating,
-    images,
-    title,
-  } = props.product;
+  let { id, info, price, stock, rating, images, title } = props.product;
 
   let addItem = props.addItem;
-    
+
   return (
     <Card className="product">
       <Link to={'/product/' + id}>
@@ -41,16 +34,20 @@ function Product(props) {
       </Card.Body>
       <ListGroup className="list-group-flush">
         <ListGroup.Item>€ {price} .-</ListGroup.Item>
-        <ListGroup.Item >
+        <ListGroup.Item>
           <Rating rating={rating} />
         </ListGroup.Item>
       </ListGroup>
-      <Card.Body className="d-grid gap-2">
-        <Button className='col-sm-12 btn-block'
-          onClick={() => addItem(props.product)
+      <Card.Body className="body-btn d-grid gap-2" >
+        <Button
+          className={
+            stock < 1 ? 'disabled col-sm-12 btn-block' : 'col-sm-12 btn-block'
           }
+          variant={stock < 1 ? 'default' : 'primary'}
+          onClick={() => addItem(props.product)}
+          
         >
-          Add to cart
+          {stock < 1 ? 'Out of Stock' : 'Add to cart'}
         </Button>
       </Card.Body>
     </Card>

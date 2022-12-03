@@ -24,7 +24,7 @@ function Footer() {
         </Row>
         <Row>
           <Col md={4}>
-            <Link to="/contactus">Contact us</Link>
+            <Link to="/contactus" className='footer-link'>Contact us</Link>
           </Col>
           <Col md={4} className="footer-row">
             <img

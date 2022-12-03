@@ -15,7 +15,6 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import { Navbar } from 'react-bootstrap';
 
-
 function HomePage(props) {
   let { url, setUrl, addItem, cartItems, category } = props;
   let [products, setProducts] = useState([]);
@@ -46,20 +45,18 @@ function HomePage(props) {
       setTotalProducts(res.data.total);
       setLoading(false);
     }
-    fetchProducts().catch(
-      (err) => (setLoading(false), setFeedback(err), console.log(err))
-    );
+    fetchProducts().catch((err) => (setFeedback(err)));
   }, [url, category]);
 
   if (loading) {
     return <LoadingStatus />;
   }
   if (feedback) {
-    return <ErrorStatus   />;
+    return <ErrorStatus />;
   }
 
   if (products.length === 0) {
-    return <ErrorStatus error='product not found'/>;
+    return <ErrorStatus error="product not found" />;
   }
   return (
     <>

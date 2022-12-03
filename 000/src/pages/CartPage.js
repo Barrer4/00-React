@@ -1,15 +1,17 @@
 import React from 'react';
 
+//React Icons
+import { FiTrash, FiPlusCircle, FiMinusCircle } from 'react-icons/fi';
 //Bootstrap Components
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Table from 'react-bootstrap/Table';
-
-import Button from 'react-bootstrap/Button';
+import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 function CartPage(props) {
-  let { cartItems, addItem, removeItem } = props;
+  let { cartItems, addItem, removeItem, deleteItem } = props;
 
   let itemsPrice = cartItems.reduce(
     (accumulator, currentValue) =>
@@ -72,19 +74,17 @@ function CartPage(props) {
                   </td>
                   <td> {item.title}</td>
                   <td>
-                    {' '}
-                    <Button onClick={() => addItem(item)} className="add">
-                      {' '}
-                      +{' '}
-                    </Button>
+                    <FiPlusCircle
+                      onClick={() => addItem(item)}
+                      className="plus-icon"
+                    />
                   </td>
                   <td>{item.quantity}</td>
                   <td>
-                    {' '}
-                    <Button onClick={() => removeItem(item)} className="remove">
-                      {' '}
-                      -{' '}
-                    </Button>
+                    <FiMinusCircle
+                      onClick={() => removeItem(item)}
+                      className="minus-icon"
+                    />
                   </td>
                   <td className="text-end">
                     {parseFloat(item.price).toFixed(2)}
@@ -93,11 +93,34 @@ function CartPage(props) {
                     {' '}
                     {parseFloat(item.quantity * item.price).toFixed(2)}
                   </td>
+                  <td>
+                    <FiTrash onClick={() => deleteItem(item)} />
+                  </td>
                 </tr>
               ))}
             </tbody>
           </Table>
-          <Row>
+          <Link className="mt-3 d-flex justify-content-center checkout-btn">
+            <Button
+              className="col-sm-3 btn-block checkout-btn"
+              variant="warning"
+              onClick
+            >
+              Proceed to checkout {' '}
+              {cartItems.length > 0 && (
+                <>
+                  (
+                  {cartItems.reduce(
+                    (accumulator, currentItems) =>
+                      accumulator + currentItems.quantity,
+                    0
+                  )}{' '}
+                  items)
+                </>
+              )}
+            </Button>
+          </Link>
+          <Row className="mt-3">
             <Col></Col>
             <Col md={4}>
               <Table>
@@ -105,18 +128,22 @@ function CartPage(props) {
                   <tr>
                     <td>Sub Total</td>
                     <td>{parseFloat(itemsPrice).toFixed(2)}</td>
+                    <td></td>
                   </tr>
                   <tr>
                     <td>IVA</td>
                     <td>{taxPrice}</td>
+                    <td></td>
                   </tr>{' '}
                   <tr>
                     <td>Shipping</td>
                     <td>{shippingPrice.toFixed(2)}</td>
+                    <td></td>
                   </tr>{' '}
                   <tr>
                     <td>Total Cart Value</td>
                     <td>{totalCart}</td>
+                    <td></td>
                   </tr>
                 </tbody>
               </Table>
