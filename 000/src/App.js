@@ -15,9 +15,8 @@ import Footer from './components/Footer';
 import CartPage from './pages/CartPage';
 import LoadingStatus from './components/LoadingStatus';
 import NotFoundPage from './pages/NotFoundPage';
-import Search from './components/Search';
-import { Navbar } from 'react-bootstrap';
 import ErrorStatus from './components/ErrorStatus';
+import ContactUs from './pages/ContactUs';
 
 function App() {
   let [currentPage] = useState(1);
@@ -116,20 +115,7 @@ function App() {
                   />
                 }
               />
-
-              <Route
-                path="/"
-                element={
-                  <HomePage
-                    url={url}
-                    setUrl={setUrl}
-                    addItem={addItem}
-                    filterByCategory={filterByCategory}
-                    category={category}
-                    search={search}
-                  />
-                }
-              />
+              <Route path="/contactus" element={<ContactUs />} />
 
               <Route
                 path="/product/:id"
@@ -147,6 +133,19 @@ function App() {
               />
               <Route path="/error" element={<ErrorStatus />} />
               <Route path="/*" element={<NotFoundPage />} />
+              <Route
+                path="/"
+                element={
+                  <HomePage
+                    url={url}
+                    setUrl={setUrl}
+                    addItem={addItem}
+                    filterByCategory={filterByCategory}
+                    category={category}
+                    search={search}
+                  />
+                }
+              />
             </Routes>
           </Container>
         </main>

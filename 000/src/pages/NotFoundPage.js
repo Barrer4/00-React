@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 //Images
-import Error from '../components/images/error.png';
+import Error from '../components/images/feedback/error.png';
 
 //Bootstrap Components
 import Container from 'react-bootstrap/Container';

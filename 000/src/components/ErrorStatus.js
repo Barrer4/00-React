@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 //Image
-import Boom from './images/boom.png';
+import Boom from './images/feedback/boom.png';
 
 //Bootstrap Components
 import Container from 'react-bootstrap/Container';
