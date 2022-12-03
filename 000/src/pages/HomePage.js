@@ -1,24 +1,29 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 //Components
 import LoadingStatus from '../components/LoadingStatus';
 import Product from '../components/Product';
 import Pagination from '../components/Pagination';
 import Slides from '../components/Slides';
+import ErrorStatus from '../components/ErrorStatus';
+import Search from '../components/Search';
 
 //Bootstrap Components
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
+import { Navbar } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 function HomePage(props) {
-  let {url,setUrl, addItem, cartItems} = props
+  let { url, setUrl, addItem, cartItems, category } = props;
   let [products, setProducts] = useState([]);
   let [loading, setLoading] = useState(false);
   let [currentPage, setCurrentPage] = useState(1);
   let [productsPerPage] = useState(12);
-  let [totalProducts, setTotalProducts] = useState(''); 
+  let [totalProducts, setTotalProducts] = useState('');
+  let [feedback, setFeedback] = useState('');
 
   //Page selection
   function paginating(pageNumber) {
@@ -30,32 +35,43 @@ function HomePage(props) {
         }`
       )
     );
-  } 
+  }
 
-
-    useEffect(() => {
+  useEffect(() => {
     async function fetchProducts() {
       setLoading(true);
-      await fetch(url)
-        .then((res) => res.json())
-        .then((res) => {
-          setProducts(res.products);
-          setTotalProducts(res.total);
-          setLoading(false);
-        });
+
+      let res = await axios(url);
+      setProducts(res.data.products);
+      setTotalProducts(res.data.total);
+      setLoading(false);
     }
-    fetchProducts();
-  }, [url]); 
+    fetchProducts().catch(
+      (err) => (setLoading(false), setFeedback(err), console.log(err))
+    );
+  }, [url, category]);
 
   if (loading) {
     return <LoadingStatus />;
   }
+  if (feedback) {
+    return <ErrorStatus   />;
+  }
 
+  if (products.length === 0) {
+    return <ErrorStatus error='product not found'/>;
+  }
   return (
     <>
+      <Navbar className="navbar-search" bg="default" expand="lg">
+        <Search search={props.search} />
+      </Navbar>
+
       <Slides />
       <Container className="mt-5">
-        <Row><h4>{cartItems}</h4></Row>
+        <Row>
+          <h4>{cartItems}</h4>
+        </Row>
         <Row className="row-cstm">
           {products.map((product) => (
             <Col
@@ -65,10 +81,7 @@ function HomePage(props) {
               lg={3}
               className="mb-3 text-center"
             >
-              <Product
-                product={product}
-                addItem={addItem}
-              />
+              <Product product={product} addItem={addItem} />
             </Col>
           ))}
         </Row>

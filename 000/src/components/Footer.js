@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 //Images
 import Mastercard from '../components/images/footer/mastercard.png';
@@ -9,6 +10,9 @@ import PayPal from '../components/images/footer/paypal2.png';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
+import { Col } from 'react-bootstrap';
+import ContactUs from '../pages/ContactUs';
+
 
 function Footer() {
   return (
@@ -18,10 +22,20 @@ function Footer() {
         <Row>
           <Card.Title>Special title treatment</Card.Title>
         </Row>
-        <Row className="footer-row">
-          <img className="footer-img" src={Mastercard} alt="mastercard" />
-          <img className="footer-img" src={Visa} alt="mastercard" />
-          <img className="footer-img" src={PayPal} alt="mastercard" />
+        <Row>
+          <Col md={4}>
+            <Link to="/contactus">Contact us</Link>
+          </Col>
+          <Col md={4} className="footer-row">
+            <img
+              className="footer-img img-mc"
+              src={Mastercard}
+              alt="mastercard"
+            />
+            <img className="footer-img img-md" src={Visa} alt="mastercard" />
+            <img className="footer-img img-pp" src={PayPal} alt="mastercard" />
+          </Col>
+          <Col md={4}></Col>
         </Row>
 
         <Button variant="primary">Go somewhere</Button>

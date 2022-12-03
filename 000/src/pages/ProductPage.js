@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 //Bootstrap Components
 import Button from 'react-bootstrap/Button';
@@ -12,37 +13,37 @@ import Badge from 'react-bootstrap/Badge';
 //Components
 import Rating from '../components/Rating';
 import LoadingStatus from '../components/LoadingStatus';
+import ErrorStatus from '../components/ErrorStatus';
 
 function ProductPage(props) {
   let params = useParams();
   let { id } = params;
+  let addItem = props.addItem;
 
   let url = 'https://dummyjson.com/products/' + id;
   let [product, setProduct] = useState([]);
   let [loading, setLoading] = useState(false);
+  let [feedback, setFeedback] = useState('');
 
   useEffect(() => {
     async function fetchproduct() {
       setLoading(true);
-      await fetch(url)
-        .then((res) => res.json())
-        .then((data) => {
-          setProduct(data);
-          setLoading(false);
-        })
-        .catch((error) => (
-          <div>
-            <h1>Error: {error} </h1>
-          </div>
-        ));
+      let res = await axios(url);
+      setProduct(res.data);
+      setLoading(false);
     }
-    fetchproduct();
-  }, [url]);
+    fetchproduct().catch((err) => (setLoading(false), setFeedback(err)));
+  }, [url, id]);
 
   if (loading) {
     return <LoadingStatus />;
   }
-  let addItem = props.addItem;
+
+  if (feedback !== '') {
+    return <ErrorStatus />;
+  }
+
+
   return (
     <Container className="mt-5 mb-5">
       <Row className="mt-3">
@@ -80,7 +81,7 @@ function ProductPage(props) {
           </ListGroup>
           <div className="mt-4 text-end">
             <Button
-              className={product.stock < 1 ? 'disabled w-25' : 'w-25'}
+              className={product.stock < 1 ? 'disabled col-sm-4' : 'col-sm-4'}
               onClick={() => {
                 addItem(product);
               }}

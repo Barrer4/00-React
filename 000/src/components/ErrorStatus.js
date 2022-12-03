@@ -1,18 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-//Images
-import Error from '../components/images/error.png';
+//Image
+import Boom from './images/boom.png';
 
 //Bootstrap Components
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
 
-import Button from 'react-bootstrap/Button';
-
-function NotFoundPage() {
+function ErrorStatus(props) {
   return (
     <Container>
       <Row>
@@ -23,26 +22,24 @@ function NotFoundPage() {
               style={{
                 margin: 'auto',
                 justifySelf: 'center',
-                width: '60%',
+                width: '100%',
                 objectFit: 'contain',
               }}
-              src={Error}
-              alt="error"
+              src={Boom}
+              alt="boom"
             />
           </Row>
           <Row className="mt-3 d-flex text-center">
-            <h1>Oh oh! </h1>
-            <div className="mt-4">
-              <p className="mb-1">
-                It seems the page your are looking for does not exist...{' '}
-              </p>
-            </div>
-          </Row>
-          <Row className="mt-3 d-flex text-center">
-            <Link to="/" className=" gap-2">
-              <Button className="col-sm-3">Home</Button>
-            </Link>
-          </Row>
+
+          {props.error ? (
+            <>
+              <h3> We do not have the product you are looking for. </h3>
+              <p>Please, try another search</p>{' '}
+            </>
+          ) : (
+            <h2>It seems the server could not handle your awesomeness!</h2>
+          )}
+        </Row>
         </Col>
         <Col md={3}></Col>
       </Row>
@@ -50,4 +47,4 @@ function NotFoundPage() {
   );
 }
 
-export default NotFoundPage;
+export default ErrorStatus;

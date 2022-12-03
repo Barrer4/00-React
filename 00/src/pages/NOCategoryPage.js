@@ -8,9 +8,9 @@ import Col from 'react-bootstrap/Col';
 
 //Components
 
-import LoadingStatus from '../components/LoadingStatus';
-import Product from '../components/Product';
-import Pagination from '../components/Pagination';
+import LoadingStatus from '../../../000/src/components/LoadingStatus';
+import Product from '../../../000/src/components/Product';
+import Pagination from '../../../000/src/components/Pagination';
 
 function CategoryPage(props) {
   let params = useParams();
@@ -58,13 +58,19 @@ function CategoryPage(props) {
     <Container className="mt-5">
       <Row className="row-cstm">
         {products.map((product, i) => (
-          <Col key={product.id} sm={6} md={4} lg={3} className="mb-3 text-center">
+          <Col
+            key={product.id}
+            sm={6}
+            md={4}
+            lg={3}
+            className="mb-3 text-center"
+          >
             <Product
-                product={product}
-                cartItems={props.cartItems}
-                setCartItems={props.setCartItems}
-                addItem={props.addItem}
-              />
+              product={product}
+              cartItems={props.cartItems}
+              setCartItems={props.setCartItems}
+              addItem={props.addItem}
+            />
           </Col>
         ))}
       </Row>

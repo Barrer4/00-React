@@ -1,33 +1,43 @@
 import React from 'react';
+import { FiShoppingCart, FiUser } from 'react-icons/fi';
 
 //React-router-dom Components
 import { Link } from 'react-router-dom';
 
-//Images
-import Cart from '../components/images/cart.png';
-import User from '../components/images/user.png';
-
 //Bootstrap Components
-
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import Button from 'react-bootstrap/Button';
 import Stack from 'react-bootstrap/Stack';
+import Badge from 'react-bootstrap/Badge';
 
 //Components
 import Categories from '../../../000/src/components/Categories';
-import Search from './Search';
 
 function Header(props) {
-  let { cartItems, filterByCategory } = props;
-  console.log(cartItems);
+  let {
+    filterByCategory,
+
+    cartItems,
+    setUrl,
+    currentPage,
+    productsPerPage,
+  } = props;
+
+  let home = `https://dummyjson.com/products?limit=${productsPerPage}&skip=${
+    productsPerPage * (currentPage - 1)
+  }`;
+
   return (
     <>
       <Navbar bg="light" expand="lg">
         <Container fluid>
-          <Navbar.Brand ><Link to='/' className="navbar-brand">CARA Store</Link></Navbar.Brand>
+          <Navbar.Brand>
+            <Link to="/" className="navbar-brand" onClick={() => setUrl(home)}>
+              CARA Store
+            </Link>
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav
@@ -36,35 +46,37 @@ function Header(props) {
               navbarScroll
             >
               <Categories filterByCategory={filterByCategory} />
-
-              <NavDropdown title="Link" id="navbarScrollingDropdown">
-                <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action4">
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action5">
-                  Something else here
-                </NavDropdown.Item>
-              </NavDropdown>
             </Nav>
 
-            <Search />
-            <Stack direction="horizontal" gap={2}>
-              <div className="vr" />
+            <Stack direction="horizontal" gap={2} className="me-2">
               <Link href="/login">
                 <Button className="icon-btn" variant="default">
-                  <img className="user" src={User} alt="user-logo" />
+                  <FiUser className="icon" />
                 </Button>
               </Link>
-              <Link to="/cart" onClick={()=> console.log('click al carrito')}>
+
+              <Link to="/cart">
                 <Button
                   className="icon-btn"
                   variant="default"
-                  
+                  style={{ height: 'auto' }}
                 >
-                  <img className="cart" src={Cart} alt="cart-logo" />
+                  <FiShoppingCart className="icon" />
                 </Button>
+                {cartItems.length === 0 && (
+                  <Badge className="cart-badge" pill bg="danger" text="light">
+                    0
+                  </Badge>
+                )}
+                {cartItems.length > 0 && (
+                  <Badge className="cart-badge" pill bg="warning" text="dark">
+                    {cartItems.reduce(
+                      (accumulator, currentItems) =>
+                        accumulator + currentItems.quantity,
+                      0
+                    )}
+                  </Badge>
+                )}
               </Link>
             </Stack>
           </Navbar.Collapse>

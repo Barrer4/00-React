@@ -1,4 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
+//Components
+import ErrorStatus from './ErrorStatus';
+
 //React-router-dom Components
 import { Link } from 'react-router-dom';
 
@@ -12,6 +17,7 @@ function Categories(props) {
   let [loading, setLoading] = useState(false);
   let [categories, setCategories] = useState([]);
   let [select, setSelect] = useState('');
+  let [feedback, setFeedback] = useState('');
 
   let handleClose = () => setShow(false);
   let handleShow = () => setShow(true);
@@ -19,20 +25,21 @@ function Categories(props) {
   useEffect(() => {
     async function fetchCategories() {
       setLoading(true);
-      await fetch(url)
-        .then((res) => res.json())
-        .then((res) => {
-          let categories = res.map((category) => {
-            return (
-              category.charAt(0).toUpperCase() + category.slice(1).toLowerCase()
-            );
-          });
-          setCategories(categories);
-          setSelect(select);
-          setLoading(false);
-        });
+
+      let res = await axios(url);
+
+      let categories = res.data.map((category) => {
+        return (
+          category.charAt(0).toUpperCase() + category.slice(1).toLowerCase()
+        );
+      });
+      setCategories(categories);
+      setSelect(select);
+      setLoading(false);
     }
-    fetchCategories();
+    fetchCategories().catch(
+      (err) => (setLoading(false), setFeedback(err), console.log(err))
+    );
   }, [url, select]);
 
   if (loading) {
@@ -42,6 +49,10 @@ function Categories(props) {
         Loading...{' '}
       </Nav.Link>
     );
+  }
+
+  if (feedback) {
+    return <ErrorStatus />;
   }
 
   return (
@@ -58,11 +69,10 @@ function Categories(props) {
           <h5>Categories</h5>
           {categories.map((category, i) => {
             return (
-              <Nav.Link className="mt-2">
+              <Nav.Link key={i} className="mt-2">
                 <Link
-                className="category-link"
+                  className="category-link"
                   to={'/category/' + category}
-                  key={i}
                   id={`${i}-link-offcanvas`}
                   value={category}
                   onClick={() => {
