@@ -14,7 +14,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import { Navbar } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+
 
 function HomePage(props) {
   let { url, setUrl, addItem, cartItems, category } = props;

@@ -3,6 +3,10 @@ import React, { useState } from 'react';
 //Bootstrap Components
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 
+//Components
+import Confirmation from '../components/Confirmation';
+
+
 function ContactUs() {
   let [form, setForm] = useState({});
   let [errors, setErrors] = useState({});
@@ -27,6 +31,11 @@ function ContactUs() {
     if (!email || email === '') {
       newErrors.email = 'Please enter your email';
     }
+
+    if (!email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
+      newErrors.email = 'The format is incorrect. Please enter a valid email';
+    }
+
     if (!category || category === 'Click to select category') {
       newErrors.category = 'Please select the category';
     }
@@ -40,13 +49,14 @@ function ContactUs() {
     e.preventDefault();
 
     let formErrors = validateForm();
+
     if (Object.keys(formErrors).length > 0) {
       setErrors(formErrors);
     } else {
-      console.log('form submitted');
-      console.log(form);
+      return <Confirmation />;
     }
   }
+
   return (
     <Container className="mt-3">
       <Row>
