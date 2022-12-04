@@ -31,8 +31,8 @@
 }
 .product {
   height: 100%;
-
 }
+
 
 .product:hover {
   box-shadow: var(--default_shadow) 4px 4px 4px;
@@ -40,9 +40,11 @@
 }
 
 .card-img {
-  padding: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 0;
   object-fit: scale-down;
-  vertical-align: center;
+  vertical-align: middle;
+  margin: auto;
 }
 
 

@@ -10,14 +10,16 @@ import ListGroup from 'react-bootstrap/ListGroup';
 
 //Components
 import Rating from './Rating';
+import { Container } from 'react-bootstrap';
 
 function Product(props) {
-  let { id, info, price, stock, rating, images, title } = props.product;
+  let { id, price, stock, rating, images, title } = props.product;
 
   let addItem = props.addItem;
 
   return (
     <Card className="product">
+      <Container style={{display: 'flex' ,verticalAlign: 'middle'}}>
       <Link to={'/product/' + id}>
         <Card.Img
           className="card-img"
@@ -26,7 +28,9 @@ function Product(props) {
           alt={title}
         />
       </Link>
+      </Container>
       <Card.Body></Card.Body>
+      <Container>
       <ListGroup className="list-group-flush">
         <ListGroup.Item className='product-list'>
           <Link to={'/product/' + id}>
@@ -38,6 +42,7 @@ function Product(props) {
           <Rating rating={rating} />
         </ListGroup.Item>
       </ListGroup>
+      </Container>
       <Card.Body className="body-btn d-grid gap-2">
         <Button
           className={

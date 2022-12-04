@@ -18,7 +18,7 @@ import Stack from 'react-bootstrap/Stack';
 import Badge from 'react-bootstrap/Badge';
 
 //Components
-import Categories from '../../../000/src/components/Categories';
+import Categories from './Categories';
 import { NavDropdown } from 'react-bootstrap';
 
 function Header(props) {
