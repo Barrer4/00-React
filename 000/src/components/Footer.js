@@ -10,6 +10,7 @@ import {
 } from 'react-icons/bs';
 import { FaCcMastercard, FaCcPaypal } from 'react-icons/fa';
 import { SiVisa } from 'react-icons/si';
+import { GoQuestion } from 'react-icons/go';
 
 //Bootstrap Components
 import { Card, Col, Row, Stack } from 'react-bootstrap';
@@ -28,7 +29,11 @@ function Footer() {
           <Col md={4}>
             <p>Payments accepted </p>
           </Col>
-          <Col md={4}></Col>
+          <Col md={4}>
+            <Link to="/aboutus" className="text-align-top footer-link">
+              About us
+            </Link>
+          </Col>
         </Row>
         <Row className="">
           <Col md={4}>
@@ -56,10 +61,10 @@ function Footer() {
             </Stack>
           </Col>
 
-          <Col md={4}></Col>
+          <Col md={4}>
+            <GoQuestion />
+          </Col>
         </Row>
-
-        {/*     <Button variant="primary">Go somewhere</Button> */}
       </Card.Body>
     </Card>
   );

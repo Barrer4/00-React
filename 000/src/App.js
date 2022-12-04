@@ -18,6 +18,7 @@ import LogInPage from './pages/LogInPage';
 import CartPage from './pages/CartPage';
 import NotFoundPage from './pages/NotFoundPage';
 import SignInPage from './pages/SignInPage';
+import AboutUs from './pages/AboutUs';
 
 //Components
 import Header from './components/Header';
@@ -170,6 +171,7 @@ function App() {
                 }
               />
               <Route path="/contactus" element={<ContactUs />} />
+              <Route path="/aboutus" element={<AboutUs />} />
 
               <Route
                 path="/product/:id"
@@ -192,7 +194,10 @@ function App() {
               <Route path="/*" element={<NotFoundPage />} />
 
               <Route path="/signin" element={<SignInPage />} />
-              <Route path="/checkout" element={<CheckOut signOut={signOut} />} />
+              <Route
+                path="/checkout"
+                element={<CheckOut signOut={signOut} />}
+              />
               <Route
                 path="/"
                 element={
