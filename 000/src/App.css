@@ -71,17 +71,16 @@
 }
 .category-link:hover {
   text-decoration: none;
-  color: var(--success_t1);
+  color: var(--secondary_t1);
   margin-left: 0.8rem;
 }
-
 
 /*------------------------------------
 - HEADER ICONS -
 ------------------------------------*/
 #arrow-user {
-   color: var(--light_t1) !important;
-   text-align: center;
+  color: var(--light_t1) !important;
+  text-align: center;
 }
 
 .user-btn {
@@ -98,9 +97,13 @@
   border: 2px solid var(--light_t1) !important;
   color: var(--light_t1) !important;
   border-radius: 50%;
-
   width: 2.5rem;
   height: 2.5rem;
+}
+
+.icon-btn:hover,
+.user-btn:hover {
+  border: 3px solid var(--light_t1) !important;
 }
 
 .cart-badge {

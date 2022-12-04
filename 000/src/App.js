@@ -30,11 +30,19 @@ function App() {
   let [productsPerPage] = useState(12);
   let [category, setCategory] = useState('all');
   let loading = false;
+
   let [user, setUser] = useState(
     localStorage.getItem('user')
       ? JSON.parse(localStorage.getItem('user'))
       : null
   );
+
+  let [address, setAddress] = useState(
+    localStorage.getItem('address')
+      ? JSON.parse(localStorage.getItem('address'))
+      : null
+  );
+
   let [cartItems, setCartItems] = useState(
     localStorage.getItem('cartItems')
       ? JSON.parse(localStorage.getItem('cartItems'))
@@ -61,20 +69,27 @@ function App() {
   }
 
   //To check user
-  function signIn(info) {
-    setUser(info);
+  function signIn(user) {
+    setUser(user);
+    setAddress(user.address);
+    console.log(address);
+
     toast.info('Login successful');
-    localStorage.setItem('user', JSON.stringify(info));
-    console.log(info)
+    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('address', JSON.stringify(address));
+  
   }
 
   //To logout user
   function signOut() {
     setUser({});
     localStorage.removeItem('user');
+    setAddress({});
+    localStorage.removeItem('address');
     toast.info('Logout successful');
     window.location.reload();
   }
+
   //To add products to the cart
   function addItem(newItem) {
     let itemExists = cartItems.find(
@@ -181,7 +196,10 @@ function App() {
               />
               <Route path="/error" element={<ErrorStatus />} />
               <Route path="/*" element={<NotFoundPage />} />
-              <Route path="/shipping" element={<ShippingPage user={user}/>} />
+              <Route
+                path="/shipping"
+                element={<ShippingPage address={address} />}
+              />
               <Route path="/signin" element={<SignInPage signIn={signIn} />} />
               <Route
                 path="/"

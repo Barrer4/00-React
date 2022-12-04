@@ -331,7 +331,7 @@ a.text-info:focus {
 ------------------------------------*/
 
 /*------------------------------------
-- COLOR success
+- COLOR success START -
 ------------------------------------*/
 
 .alert-success {
@@ -496,7 +496,7 @@ a.text-success:focus {
 ------------------------------------*/
 
 /*------------------------------------
-- COLOR warning
+- COLOR warning START -
 ------------------------------------*/
 
 .alert-warning {
@@ -821,7 +821,7 @@ a.text-danger:focus {
 }
 
 /*------------------------------------
-- COLOR secondary
+- COLOR secondary START-
 ------------------------------------*/
 
 .alert-secondary {
@@ -986,7 +986,7 @@ a.text-secondary:focus {
 ------------------------------------*/
 
 /*------------------------------------
-- COLOR dark
+- COLOR dark START -
 ------------------------------------*/
 
 .alert-dark {
@@ -1380,18 +1380,19 @@ a.text-light:focus {
   --danger_shadow: rgba(244, 67, 54, 0.5);
   --danger_text_color_dark_bright: #fff;
 
-  --secondary_t1: #f44336;
-  --secondary_t2: #ea1b0c;
-  --secondary_t3: #fccfcb;
-  --secondary_t4: #fde5e4;
-  --secondary_t5: #a61309;
-  --secondary_t6: #db1a0c;
-  --secondary_t7: #f22314;
-  --secondary_t8: #760e06;
-  --secondary_t9: #fef7f7;
+  --secondary_t1: #afa9b0;
+  --secondary_t2: #968e97;
+  --secondary_t3: #fbfbfb;
+  --secondary_t4: #f2f1f3;
+  --secondary_t5: #726a74;
+  --secondary_t6: #8e8690;
+  --secondary_t7: #9d969e;
+  --secondary_t8: #585259;
+  --secondary_t9: #e6e4e6;
 
-  --secondary_shadow: rgba(244, 67, 54, 0.5);
-  --secondary_text_color_dark_bright: #fff;
+  --secondary_shadow: rgba(175, 169, 176, 0.5);
+  --secondary_text_color_dark_bright: #212529;
+
 
   --dark_t1: #263244;
   --dark_t2: #131923;
@@ -1408,13 +1409,13 @@ a.text-light:focus {
 
   --light_t1: #f4f5f1;
   --light_t2: #dcdfd3;
-  --light_t3: #13c13614d;
-  --light_t4: #14814115c;
+  --light_t3: #c4cab4;
+  --light_t4: #d0d5c3;
   --light_t5: #bbc2a9;
   --light_t6: #d5d9ca;
   --light_t7: #e3e6dc;
   --light_t8: #a4ac8b;
-  --light_t9: #151149168;
+  --light_t9: #dbdfd1;
 
   --light_shadow: rgba(244, 245, 241, 0.5);
   --light_text_color_dark_bright: #212529;

@@ -5,18 +5,19 @@ import SignInPage from './SignInPage';
 
 //Bootstrap Components
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
+import ErrorStatus from '../components/ErrorStatus';
 
 function ShippingPage(props) {
-  let user = props.user;
+  let address = props;
+  let [street, setStreet] = useState(address.address, '');
+  let [city, setCity] = useState(address.city || '');
+  let [postalCode, setPostalCode] = useState(address.postalCode || '');
+  let [state, setState] = useState(address.state || ''); 
 
-  if (props.user === null) {
-    <SignInPage />
+  if (address) {
+    return <ErrorStatus />;
   }
-  let [address, setAddress] = useState(user.address.address, '');
-  let [city, setCity] = useState(user.address.city || '');
-  let [postalCode, setPostalCode] = useState(user.address.postalCode || '');
-  let [state, setState] = useState(user.address.state || '');
-
+console.log(address)
   return (
     <Container className="mt-3">
       <Row>
@@ -27,8 +28,8 @@ function ShippingPage(props) {
               <Form.Label>Address</Form.Label>
               <Form.Control
                 placeholder="1234 Main St"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
+                value={street}
+                onChange={(e) => setStreet(e.target.value)}
               />
             </Form.Group>
 
@@ -60,12 +61,12 @@ function ShippingPage(props) {
             <Button className="mt-3 w-25 " variant="primary" type="submit">
               Submit
             </Button>
-          </Form>
+          </Form> 
         </Col>
         <Col md={3}></Col>
       </Row>
     </Container>
-  );
+  ); 
 }
 
 export default ShippingPage;
