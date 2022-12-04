@@ -1,31 +1,40 @@
 import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
 
 //Style
 import './App.css';
- import './colors.css'; 
+import './colors.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 //Bootstrap Components
 import Container from 'react-bootstrap/Container';
 
-//Components
-import Header from './components/Header';
+//Pages
 import HomePage from './pages/HomePage';
 import ProductPage from './pages/ProductPage';
-import Footer from './components/Footer';
-import CartPage from './pages/CartPage';
-import LoadingStatus from './components/LoadingStatus';
-import NotFoundPage from './pages/NotFoundPage';
-import ErrorStatus from './components/ErrorStatus';
 import ContactUs from './pages/ContactUs';
 import SignInPage from './pages/SignInPage';
+import ShippingPage from './pages/ShippingPage';
+import CartPage from './pages/CartPage';
+import NotFoundPage from './pages/NotFoundPage';
+
+//Components
+import Header from './components/Header';
+import Footer from './components/Footer';
+import LoadingStatus from './components/LoadingStatus';
+import ErrorStatus from './components/ErrorStatus';
 
 function App() {
   let [currentPage] = useState(1);
   let [productsPerPage] = useState(12);
   let [category, setCategory] = useState('all');
   let loading = false;
-  let [user, setUser] = useState({})
+  let [user, setUser] = useState(
+    localStorage.getItem('user')
+      ? JSON.parse(localStorage.getItem('user'))
+      : null
+  );
   let [cartItems, setCartItems] = useState(
     localStorage.getItem('cartItems')
       ? JSON.parse(localStorage.getItem('cartItems'))
@@ -41,21 +50,30 @@ function App() {
 
   //Returns products by category
   function filterByCategory(option) {
-    return (
-      setUrl(''),
-      setCategory(option),
-      setUrl('https://dummyjson.com/products/category/' + option)
-    );
+    setUrl('');
+    setCategory(option);
+    setUrl('https://dummyjson.com/products/category/' + option);
   }
 
   //To search products
   function search(query) {
-     setUrl('https://dummyjson.com/products/search?q=' + query);
+    setUrl('https://dummyjson.com/products/search?q=' + query);
   }
 
   //To check user
-  function userLogged(info) {
-   return setUser(info)
+  function signIn(info) {
+    setUser(info);
+    toast.info('Login successful');
+    localStorage.setItem('user', JSON.stringify(info));
+    console.log(info)
+  }
+
+  //To logout user
+  function signOut() {
+    setUser({});
+    localStorage.removeItem('user');
+    toast.info('Logout successful');
+    window.location.reload();
   }
   //To add products to the cart
   function addItem(newItem) {
@@ -116,6 +134,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="d-flex flex-column site-container">
+        <ToastContainer position="bottom-center" limit={1} />
         <header>
           <Header
             filterByCategory={filterByCategory}
@@ -123,6 +142,7 @@ function App() {
             productsPerPage={productsPerPage}
             currentPage={currentPage}
             user={user}
+            signOut={signOut}
           />
         </header>
         <main>
@@ -155,12 +175,14 @@ function App() {
                     removeItem={removeItem}
                     deleteItem={deleteItem}
                     cartItems={cartItems}
+                    user={user}
                   />
                 }
               />
               <Route path="/error" element={<ErrorStatus />} />
               <Route path="/*" element={<NotFoundPage />} />
-              <Route path='/signin'  element={<SignInPage userLogged={userLogged} />} />
+              <Route path="/shipping" element={<ShippingPage user={user}/>} />
+              <Route path="/signin" element={<SignInPage signIn={signIn} />} />
               <Route
                 path="/"
                 element={

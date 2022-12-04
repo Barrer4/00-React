@@ -1,5 +1,4 @@
 import React from 'react';
-import { FiShoppingCart, FiUser } from 'react-icons/fi';
 import {
   BsFillPersonCheckFill,
   BsFillPersonXFill,
@@ -8,7 +7,7 @@ import {
 } from 'react-icons/bs';
 
 //React-router-dom Components
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 //Bootstrap Components
 import Container from 'react-bootstrap/Container';
@@ -20,7 +19,7 @@ import Badge from 'react-bootstrap/Badge';
 
 //Components
 import Categories from '../../../000/src/components/Categories';
-import { Dropdown, DropdownButton } from 'react-bootstrap';
+import { NavDropdown } from 'react-bootstrap';
 
 function Header(props) {
   let {
@@ -30,13 +29,13 @@ function Header(props) {
     currentPage,
     productsPerPage,
     user,
+    signOut,
   } = props;
 
   let home = `https://dummyjson.com/products?limit=${productsPerPage}&skip=${
     productsPerPage * (currentPage - 1)
   }`;
 
-  console.log(user);
   return (
     <>
       <Navbar className="text-light" bg="info" expand="lg">
@@ -57,19 +56,29 @@ function Header(props) {
             </Nav>
 
             <Stack direction="horizontal" gap={2} className="me-2">
-              {user === undefined ? (
+              {user === null ? (
                 <Link to="/signin">
                   <Button className="user-btn" variant="danger">
-                    <BsFillPersonXFill className="icon" />{' '}
+                    <BsFillPersonXFill className="icon" />
                   </Button>
                 </Link>
               ) : (
-                <>
-                  <DropdownButton variant="dark"align="start" id="dropdown-menu-align-end" />
+                <Nav>
+                  <NavDropdown id='arrow-user' variant="light" align="start" drop="start">
+                    <NavDropdown.Item>
+                      <Link className="dropdown-item" to="/profile">User Profile</Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item>
+                      <NavLink className="dropdown-item"  href="/" onClick={signOut}>
+                        Sign Out
+                      </NavLink>
+                    </NavDropdown.Item>
+                  </NavDropdown>
                   <Button className="user-btn" variant="success">
                     <BsFillPersonCheckFill className="icon" />
                   </Button>
-                </>
+                </Nav>
               )}
 
               {cartItems.length === 0 && (

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify';
+
 
 //Bootstrap Components
 import Container from 'react-bootstrap/Container';
@@ -9,20 +11,26 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Link } from 'react-router-dom';
 
+
+
+
 function SignInPage(props) {
   let [email, setEmail] = useState('');
   let [pass, setPass] = useState('');
-  let { userLogged } = props;
+  let { signIn } = props;
 
-  async function signIn(e) {
+  async function userCheck(e) {
     e.preventDefault();
-    let res = await axios('https://dummyjson.com/users/search?q=' + email);
-    let user = res.data.users[0];
-
-    if (user.password !== pass) {
-      alert('Credentials error');
-    } else {
-      userLogged(user);
+    try {
+      let res = await axios('https://dummyjson.com/users/search?q=' + email);
+      let user = res.data.users[0];
+      if (user.password !== pass) {
+        toast.error('Credentials error');
+      } else {
+        signIn(user);
+      }
+    } catch (err) {
+      toast.error(err);
     }
   }
 
@@ -57,7 +65,7 @@ function SignInPage(props) {
                 className="mt-3 d-grid gap-2 col-sm-12 btn-block"
                 variant="primary"
                 type="submit"
-                onClick={signIn}
+                onClick={userCheck}
               >
                 Sign in
               </Button>

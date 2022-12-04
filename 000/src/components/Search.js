@@ -18,29 +18,25 @@ function Search(props) {
   }
 
   return (
-  
-     
-        <Form className="search-bar">
-          <Form.Control
-            type="search"
-            placeholder="Search"
-            className="me-2"
-            aria-label="Search"
-            onChange={(event) => setInput(event.target.value)}
-            onKeyPress={handleEnter}
-          />
-          <Stack direction="horizontal" gap={2}>
-            <Button
-              id="search-btn"
-              variant="outline-success"
-              onClick={() => props.search(input)}
-            >
-              Search
-            </Button>
-          </Stack>
-        </Form>
-     
-
+    <Form className="search-bar">
+      <Form.Control
+        type="search"
+        placeholder="Search"
+        className="me-2"
+        aria-label="Search"
+        onChange={(event) => setInput(event.target.value)}
+        onKeyPress={handleEnter}
+      />
+      <Stack direction="horizontal" gap={2}>
+        <Button
+          id="search-btn"
+          variant="outline-info"
+          onClick={() => props.search(input)}
+        >
+          Search
+        </Button>
+      </Stack>
+    </Form>
   );
 }
 

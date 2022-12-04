@@ -54,6 +54,7 @@ button.bg-primary:focus {
   color: var(--primary_text_color_dark_bright);
   background-color: var(--primary_t7);
   border-color: var(--primary_t2);
+  font-weight: 500;
 }
 
 .btn-primary:focus,
@@ -218,6 +219,7 @@ button.bg-info:focus {
   color: var(--info_text_color_dark_bright);
   background-color: var(--info_t7);
   border-color: var(--info_t2);
+  font-weight: 500;
 }
 
 .btn-info:focus,
@@ -382,6 +384,7 @@ button.bg-success:focus {
   color: var(--success_text_color_dark_bright);
   background-color: var(--success_t7);
   border-color: var(--success_t2);
+  font-weight: 500;
 }
 
 .btn-success:focus,
@@ -704,6 +707,7 @@ button.bg-danger:focus {
   color: var(--danger_text_color_dark_bright);
   background-color: var(--danger_t1);
   border-color: var(--danger_t1);
+  font-weight: 500;
 }
 
 .btn-danger:hover {
@@ -870,6 +874,7 @@ button.bg-secondary:focus {
   color: var(--secondary_text_color_dark_bright);
   background-color: var(--secondary_t7);
   border-color: var(--secondary_t2);
+  font-weight: 500;
 }
 
 .btn-secondary:focus,
@@ -1034,6 +1039,7 @@ button.bg-dark:focus {
   color: var(--dark_text_color_dark_bright);
   background-color: var(--dark_t7);
   border-color: var(--dark_t2);
+  font-weight: 500;
 }
 
 .btn-dark:focus,
@@ -1198,6 +1204,7 @@ button.bg-light:focus {
   color: var(--light_text_color_dark_bright);
   background-color: var(--light_t7);
   border-color: var(--light_t2);
+  font-weight: 500;
 }
 
 .btn-light:focus,

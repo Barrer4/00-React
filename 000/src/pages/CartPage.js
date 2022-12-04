@@ -11,7 +11,7 @@ import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 function CartPage(props) {
-  let { cartItems, addItem, removeItem, deleteItem } = props;
+  let { cartItems, addItem, removeItem, deleteItem, user } = props;
 
   let itemsPrice = cartItems.reduce(
     (accumulator, currentValue) =>
@@ -38,7 +38,7 @@ function CartPage(props) {
               <p>
                 But no worries... You can go back to the store to add products
                 to your basket 😊
-              </p>{' '}
+              </p>
             </div>
           ) : (
             ''
@@ -90,7 +90,6 @@ function CartPage(props) {
                     {parseFloat(item.price).toFixed(2)}
                   </td>
                   <td className="text-end">
-                    {' '}
                     {parseFloat(item.quantity * item.price).toFixed(2)}
                   </td>
                   <td>
@@ -100,26 +99,7 @@ function CartPage(props) {
               ))}
             </tbody>
           </Table>
-          <Link className="mt-3 d-flex justify-content-center checkout-btn">
-            <Button
-              className="col-sm-3 btn-block checkout-btn"
-              variant="warning"
-              onClick
-            >
-              Proceed to checkout {' '}
-              {cartItems.length > 0 && (
-                <>
-                  (
-                  {cartItems.reduce(
-                    (accumulator, currentItems) =>
-                      accumulator + currentItems.quantity,
-                    0
-                  )}{' '}
-                  items)
-                </>
-              )}
-            </Button>
-          </Link>
+
           <Row className="mt-3">
             <Col></Col>
             <Col md={4}>
@@ -134,12 +114,12 @@ function CartPage(props) {
                     <td>IVA</td>
                     <td>{taxPrice}</td>
                     <td></td>
-                  </tr>{' '}
+                  </tr>
                   <tr>
                     <td>Shipping</td>
                     <td>{shippingPrice.toFixed(2)}</td>
                     <td></td>
-                  </tr>{' '}
+                  </tr>
                   <tr>
                     <td>Total Cart Value</td>
                     <td>{totalCart}</td>
@@ -149,8 +129,44 @@ function CartPage(props) {
               </Table>
             </Col>
           </Row>
+          {user === null ? (
+            <Link
+              to="/signIn"
+              className="mt-4 mb-5 d-flex justify-content-end checkout-btn"
+            >
+              <Button
+                className="col-sm-3 btn-block checkout-btn"
+                variant="warning"
+              >
+                Sign In
+              </Button>
+            </Link>
+          ) : (
+            <Link
+              to="/shipping"
+              className="mt-4 mb-5 d-flex justify-content-end checkout-btn"
+            >
+              <Button
+                className="col-sm-3 btn-block checkout-btn"
+                variant="warning"
+              >
+                Proceed to checkout{' '}
+                {cartItems.length > 0 && (
+                  <>
+                    (
+                    {cartItems.reduce(
+                      (accumulator, currentItems) =>
+                        accumulator + currentItems.quantity,
+                      0
+                    )}
+                    items)
+                  </>
+                )}
+              </Button>
+            </Link>
+          )}
         </Container>
-      )}{' '}
+      )}
     </>
   );
 }

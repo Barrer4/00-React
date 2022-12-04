@@ -38,7 +38,7 @@ function Categories(props) {
       setLoading(false);
     }
     fetchCategories().catch(
-      (err) => (setLoading(false), setFeedback(err), console.log(err))
+      (err) => (setLoading(false), setFeedback(err))
     );
   }, [url, select]);
 
