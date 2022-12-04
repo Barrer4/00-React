@@ -1,4 +1,6 @@
 import React from 'react';
+
+//Boostrap Components
 import { Pagination, Container, Row, Col } from 'react-bootstrap';
 
 function Pages(props) {

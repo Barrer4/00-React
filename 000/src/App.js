@@ -14,16 +14,17 @@ import Container from 'react-bootstrap/Container';
 import HomePage from './pages/HomePage';
 import ProductPage from './pages/ProductPage';
 import ContactUs from './pages/ContactUs';
-import SignInPage from './pages/SignInPage';
-import ShippingPage from './pages/ShippingPage';
+import LogInPage from './pages/LogInPage';
 import CartPage from './pages/CartPage';
 import NotFoundPage from './pages/NotFoundPage';
+import SignInPage from './pages/SignInPage';
 
 //Components
 import Header from './components/Header';
 import Footer from './components/Footer';
 import LoadingStatus from './components/LoadingStatus';
 import ErrorStatus from './components/ErrorStatus';
+import CheckOut from './components/CheckOut';
 
 function App() {
   let [currentPage] = useState(1);
@@ -34,12 +35,6 @@ function App() {
   let [user, setUser] = useState(
     localStorage.getItem('user')
       ? JSON.parse(localStorage.getItem('user'))
-      : null
-  );
-
-  let [address, setAddress] = useState(
-    localStorage.getItem('address')
-      ? JSON.parse(localStorage.getItem('address'))
       : null
   );
 
@@ -69,23 +64,21 @@ function App() {
   }
 
   //To check user
-  function signIn(user) {
+  function logIn(user) {
     setUser(user);
-    setAddress(user.address);
-    console.log(address);
-
     toast.info('Login successful');
     localStorage.setItem('user', JSON.stringify(user));
-    localStorage.setItem('address', JSON.stringify(address));
-  
+    if (cartItems.length < 0) {
+      <Route to="/cart" />;
+    } else {
+      <Route to="/" />;
+    }
   }
 
   //To logout user
   function signOut() {
     setUser({});
     localStorage.removeItem('user');
-    setAddress({});
-    localStorage.removeItem('address');
     toast.info('Logout successful');
     window.location.reload();
   }
@@ -194,13 +187,12 @@ function App() {
                   />
                 }
               />
+              <Route path="/login" element={<LogInPage logIn={logIn} />} />
               <Route path="/error" element={<ErrorStatus />} />
               <Route path="/*" element={<NotFoundPage />} />
-              <Route
-                path="/shipping"
-                element={<ShippingPage address={address} />}
-              />
-              <Route path="/signin" element={<SignInPage signIn={signIn} />} />
+
+              <Route path="/signin" element={<SignInPage />} />
+              <Route path="/checkout" element={<CheckOut signOut={signOut} />} />
               <Route
                 path="/"
                 element={

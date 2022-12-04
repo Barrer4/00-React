@@ -1,7 +1,7 @@
 import React from 'react'
 
 //Images
-import Sent from '../components/images/feedback/sent.png';
+import Paid from '../components/images/feedback/paid.png';
 
 //Bootstrap Components
 import Container from 'react-bootstrap/Container';
@@ -10,7 +10,9 @@ import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 
 
-function Confirmation(props) {
+function CheckOut(props) {
+  
+  props.signOut()
   
   return (
    <Container className='mt-5'>
@@ -18,7 +20,7 @@ function Confirmation(props) {
      <Col md={3}></Col>
      <Col md={6}>
       
-    {props.form.name === undefined ? (<Row className="mt-5 d-flex text-center">
+  <Row className="mt-5 d-flex text-center">
     <Row>
          <Image
            style={{
@@ -27,18 +29,14 @@ function Confirmation(props) {
              width: '70%',
              objectFit: 'contain',
            }}
-           src={Sent}
-           alt="sent"
+           src={Paid}
+           alt="paid"
          />
        </Row>
-           <h3> {'Thank you for signing up'} </h3>
-           <p>Enjoy the store!</p>
+           <h3> Thank you for choosing us</h3>
+           <p>Your support means a lot to us!</p>
        
-     </Row>) : (<Row className="mt-5 d-flex text-center">
-           <h3> {props.form.name + '! Thank you for reaching us'} </h3>
-           <p>We will come back to you as soon as possible</p>
-       
-     </Row>)}
+     </Row>
        
      </Col>
      <Col md={3}></Col>
@@ -47,4 +45,4 @@ function Confirmation(props) {
   )
 }
 
-export default Confirmation;
+export default CheckOut;

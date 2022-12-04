@@ -2,6 +2,8 @@ import React from 'react';
 
 //React Icons
 import { FiTrash, FiPlusCircle, FiMinusCircle } from 'react-icons/fi';
+
+
 //Bootstrap Components
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -131,19 +133,19 @@ function CartPage(props) {
           </Row>
           {user === null ? (
             <Link
-              to="/signIn"
+              to="/logIn"
               className="mt-4 mb-5 d-flex justify-content-end checkout-btn"
             >
               <Button
                 className="col-sm-3 btn-block checkout-btn"
                 variant="warning"
               >
-                Sign In
+                Log In
               </Button>
             </Link>
           ) : (
             <Link
-              to="/shipping"
+              to='/checkOut'
               className="mt-4 mb-5 d-flex justify-content-end checkout-btn"
             >
               <Button
@@ -159,7 +161,7 @@ function CartPage(props) {
                         accumulator + currentItems.quantity,
                       0
                     )}
-                    items)
+                    {' '}items)
                   </>
                 )}
               </Button>

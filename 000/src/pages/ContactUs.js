@@ -9,7 +9,7 @@ import Confirmation from '../components/Confirmation';
 function ContactUs() {
   let [form, setForm] = useState({});
   let [errors, setErrors] = useState({});
-  let [formValidation, setFormValidation] = useState('')
+  let [formValidation, setFormValidation] = useState('');
 
   let setField = (field, value) => {
     setForm({ ...form, [field]: value });
@@ -54,13 +54,11 @@ function ContactUs() {
       setErrors(formErrors);
     } else {
       setFormValidation('ok');
-     ;
     }
   }
 
-  if(formValidation === 'ok')
-  {
-    return <Confirmation form={form} />
+  if (formValidation === 'ok') {
+    return <Confirmation form={form} />;
   }
   return (
     <Container className="mt-3">

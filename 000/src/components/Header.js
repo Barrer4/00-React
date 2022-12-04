@@ -57,20 +57,25 @@ function Header(props) {
 
             <Stack direction="horizontal" gap={2} className="me-2">
               {user === null ? (
-                <Link to="/signin">
+                <Link to="/login">
                   <Button className="user-btn" variant="danger">
                     <BsFillPersonXFill className="icon" />
                   </Button>
                 </Link>
               ) : (
                 <Nav>
-                  <NavDropdown id='arrow-user' variant="light" align="start" drop="start">
+                  <NavDropdown
+                    id="arrow-user"
+                    variant="light"
+                    align="start"
+                    drop="start"
+                  >
                     <NavDropdown.Item>
-                      <Link className="dropdown-item" to="/profile">User Profile</Link>
-                    </NavDropdown.Item>
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item>
-                      <NavLink className="dropdown-item"  href="/" onClick={signOut}>
+                      <NavLink
+                        className="dropdown-item"
+                        href="/"
+                        onClick={signOut}
+                      >
                         Sign Out
                       </NavLink>
                     </NavDropdown.Item>
